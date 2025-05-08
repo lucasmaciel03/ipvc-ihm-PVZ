@@ -1,0 +1,49 @@
+<ion-footer class="ion-no-border">
+  <div class="menu-container">
+    <div
+      class="menu-item"
+      (click)="navigateTo('eventos')"
+      [class.active]="activePage === 'eventos'"
+      data-page="eventos"
+    >
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span class="menu-label">Eventos</span>
+    </div>
+    <!-- <div
+      class="menu-item"
+      (click)="navigateTo('avisos')"
+      [class.active]="activePage === 'avisos'"
+      data-page="avisos"
+    >
+      <ion-icon name="notifications-outline"></ion-icon>
+      <span class="menu-label">Avisos</span>
+    </div> -->
+    <div
+      class="menu-item"
+      (click)="navigateTo('explore')"
+      [class.active]="activePage === 'explore'"
+      data-page="explore"
+    >
+      <ion-icon name="home"></ion-icon>
+      <span class="menu-label">Início</span>
+    </div>
+    <!-- <div
+      class="menu-item"
+      (click)="navigateTo('desporto')"
+      [class.active]="activePage === 'desporto'"
+      data-page="desporto"
+    >
+      <ion-icon name="football-outline"></ion-icon>
+      <span class="menu-label">Desporto</span>
+    </div> -->
+    <div
+      class="menu-item"
+      (click)="navigateTo('turismo')"
+      [class.active]="activePage === 'turismo'"
+      data-page="turismo"
+    >
+      <ion-icon name="map-outline"></ion-icon>
+      <span class="menu-label">Turismo</span>
+    </div>
+  </div>
+</ion-footer>

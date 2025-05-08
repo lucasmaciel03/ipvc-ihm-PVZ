@@ -1,0 +1,752 @@
+// Variáveis de cores da Póvoa de Varzim
+:root {
+  --povoa-blue: #004494; /* Azul da bandeira da Póvoa de Varzim */
+  --povoa-gold: #d4af37; /* Dourado para detalhes */
+  --povoa-light-blue: #0066cc; /* Azul mais claro para gradientes */
+  --povoa-dark-blue: #003366; /* Azul mais escuro para sombras */
+
+  --info-color: #2196f3;
+  --warning-color: #ffc107;
+  --alert-color: #f44336;
+  --outage-color: #9c27b0;
+}
+
+// Estilos para o cabeçalho
+ion-header {
+  ion-toolbar {
+    --background: transparent;
+    --color: var(--povoa-blue);
+    --min-height: 50px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --border-style: none;
+  }
+
+  .topbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px; // Adicionar padding horizontal para toda a barra
+    width: 100%;
+
+    .city-info {
+      display: flex;
+      align-items: center;
+      max-width: 70%;
+      padding-left: 5px; // Adicionar padding à esquerda
+
+      .logo-container {
+        margin-right: 8px;
+
+        .city-logo {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+        }
+      }
+
+      .title-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 2px;
+        align-items: flex-start; // Alinha os elementos à esquerda
+
+        h1 {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 700; // Mais negrito
+          letter-spacing: 0.2px;
+          color: var(--povoa-blue);
+          text-align: left;
+          font-family: "Montserrat", sans-serif; // Fonte mais elegante
+          padding: 3px 0 2px 0; // Ajuste no padding inferior
+          line-height: 1.2; // Controlar espaçamento
+        }
+
+        .slogan {
+          margin: 0;
+          font-size: 10px;
+          font-weight: 500; // Mais negrito
+          color: var(--povoa-blue);
+          opacity: 0.85;
+          text-align: left;
+          font-style: italic; // Texto em itálico
+          letter-spacing: 0.5px; // Maior espaçamento entre letras
+          line-height: 1; // Linhas mais próximas
+          margin-top: -1px; // Subir ligeiramente para aproximar do título
+        }
+      }
+    }
+
+    .weather {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--povoa-blue);
+      background-color: transparent; // Remover fundo
+      padding: 2px 0; // Reduzir padding horizontal
+      border-radius: 0; // Remover borda arredondada
+      min-width: 90px; // Reduzir largura mínima
+      justify-content: flex-end; // Alinhar à direita
+      gap: 2px; // Reduzir gap entre ícone e temperatura
+      margin-right: 5px; // Adicionar margem à direita
+
+      &.loading {
+        opacity: 0.7;
+      }
+
+      .weather-icon {
+        width: 34px; // Reduzir um pouco mais para aproximar
+        height: 34px;
+        object-fit: contain;
+        margin: 0;
+      }
+
+      span {
+        padding-right: 10px; // Aumentar padding à direita
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .breadcrumb {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 6px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .breadcrumb-inner {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #666;
+
+      span {
+        &.current {
+          color: var(--povoa-blue);
+          font-weight: 500;
+        }
+      }
+
+      ion-icon {
+        font-size: 10px;
+        margin: 0 4px;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-poppins);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+  }
+}
+
+// Estilos para o conteúdo
+ion-content {
+  --background: #f5f7fa;
+  font-family: var(--font-poppins);
+
+  .search-container {
+    padding: 16px;
+
+    ion-searchbar {
+      --background: white;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --placeholder-color: #8e9aaf;
+      --icon-color: var(--povoa-blue);
+      --color: #333;
+      margin: 0;
+    }
+  }
+
+  .categories-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 16px;
+    overflow-x: auto;
+    gap: 12px;
+
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 12px;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+
+      &:active,
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 68, 148, 0.15);
+      }
+
+      ion-icon {
+        font-size: 24px;
+        color: var(--povoa-blue);
+        margin-bottom: 8px;
+      }
+
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        color: #333;
+        text-align: center;
+      }
+    }
+  }
+
+  .section-title {
+    padding: 0 16px;
+    margin: 20px 0 12px;
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    h2 {
+      font-family: var(--font-poppins);
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin: 0;
+    }
+
+    .navigate-icon {
+      color: var(--povoa-blue);
+      font-size: 20px;
+      margin-left: 8px;
+    }
+  }
+
+  .avisos-section {
+    padding: 16px;
+
+    .section-title {
+      margin-bottom: 16px;
+
+      h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
+    }
+
+    .avisos-skeleton {
+      .aviso-skeleton {
+        background-color: #f5f5f5;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        .aviso-header {
+          display: flex;
+          margin-bottom: 12px;
+
+          .aviso-icon {
+            margin-right: 12px;
+            ion-skeleton-text {
+              border-radius: 50%;
+            }
+          }
+
+          .aviso-title {
+            flex: 1;
+
+            ion-skeleton-text {
+              height: 16px;
+              margin-bottom: 8px;
+              --border-radius: 4px;
+            }
+          }
+        }
+
+        .aviso-content {
+          ion-skeleton-text {
+            height: 14px;
+            margin-bottom: 8px;
+            --border-radius: 4px;
+          }
+        }
+      }
+    }
+
+    .no-avisos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      background-color: rgba(0, 68, 148, 0.05);
+      border-radius: 12px;
+      margin-bottom: 16px;
+
+      p {
+        color: var(--povoa-blue);
+        font-size: 14px;
+        opacity: 0.8;
+        margin: 0;
+      }
+    }
+
+    .avisos-list {
+      .aviso-card {
+        background-color: white;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        padding: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border-left: 4px solid var(--povoa-blue);
+        transition: transform 0.2s ease;
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        .aviso-header {
+          display: flex;
+          margin-bottom: 12px;
+
+          .aviso-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 68, 148, 0.1);
+            border-radius: 50%;
+            margin-right: 12px;
+
+            ion-icon {
+              font-size: 20px;
+              color: var(--povoa-blue);
+            }
+          }
+
+          .aviso-title {
+            flex: 1;
+
+            h3 {
+              font-size: 16px;
+              font-weight: 600;
+              margin: 0 0 4px 0;
+              color: #333;
+            }
+
+            p {
+              font-size: 12px;
+              color: #666;
+              margin: 0;
+            }
+          }
+        }
+
+        .aviso-content {
+          p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.4;
+            text-align: justify;
+          }
+        }
+
+        // Diferentes estilos de avisos
+        &.aviso-info {
+          border-left-color: var(--info-color);
+
+          .aviso-icon {
+            background-color: rgba(33, 150, 243, 0.1);
+
+            ion-icon {
+              color: var(--info-color);
+            }
+          }
+        }
+
+        &.aviso-warning {
+          border-left-color: var(--warning-color);
+
+          .aviso-icon {
+            background-color: rgba(255, 193, 7, 0.1);
+
+            ion-icon {
+              color: var(--warning-color);
+            }
+          }
+        }
+
+        &.aviso-alert {
+          border-left-color: var(--alert-color);
+
+          .aviso-icon {
+            background-color: rgba(244, 67, 54, 0.1);
+
+            ion-icon {
+              color: var(--alert-color);
+            }
+          }
+        }
+
+        &.aviso-outage {
+          border-left-color: var(--outage-color);
+
+          .aviso-icon {
+            background-color: rgba(156, 39, 176, 0.1);
+
+            ion-icon {
+              color: var(--outage-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Estilos para o rodapé
+ion-footer {
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+
+  .menu-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 12px 10px;
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 50px;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      position: relative;
+
+      ion-icon {
+        font-size: 22px;
+        color: #333;
+        transition: all 0.25s ease;
+        margin-bottom: 4px;
+      }
+
+      .menu-label {
+        font-size: 10px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      &.active {
+        background-color: transparent;
+        box-shadow: none;
+        transform: translateY(0);
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          background-color: var(--povoa-blue);
+          width: 56px;
+          height: 56px;
+          border-radius: 16px;
+          z-index: -1;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: var(--povoa-blue);
+          border-radius: 50%;
+        }
+
+        ion-icon {
+          color: var(--povoa-gold);
+          font-size: 24px;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-label {
+          color: white;
+          font-weight: 600;
+        }
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+// Ajustes para o modo escuro
+@media (prefers-color-scheme: dark) {
+  ion-content {
+    --background: #121212;
+
+    .search-container ion-searchbar {
+      --background: #1e1e1e;
+      --color: white;
+      --placeholder-color: #8e9aaf;
+    }
+
+    .category-item {
+      background-color: #1e1e1e;
+
+      span {
+        color: #e0e0e0;
+      }
+    }
+
+    .section-title {
+      h2 {
+        color: #e0e0e0;
+      }
+
+      .navigate-icon {
+        color: var(--povoa-light-blue);
+      }
+    }
+
+    .avisos-skeleton .aviso-skeleton {
+      background-color: #2a2a2a;
+
+      ion-skeleton-text {
+        --background-rgb: 60, 60, 60;
+        --background: rgba(var(--background-rgb), 0.3);
+      }
+    }
+
+    .avisos-list .aviso-card {
+      background-color: #1e1e1e;
+
+      .aviso-header {
+        .aviso-title {
+          h3 {
+            color: #e0e0e0;
+          }
+
+          p {
+            color: #a0a0a0;
+          }
+        }
+      }
+
+      .aviso-content p {
+        color: #a0a0a0;
+      }
+    }
+
+    .place-card,
+    .event-card {
+      background-color: #1e1e1e;
+
+      .place-info h3,
+      .event-info h3 {
+        color: #e0e0e0;
+      }
+
+      .place-location span,
+      .event-info p {
+        color: #a0a0a0;
+      }
+
+      .place-rating {
+        background-color: #2a2a2a;
+
+        span {
+          color: #e0e0e0;
+        }
+      }
+    }
+
+    .places-skeleton .place-card.skeleton,
+    .events-skeleton .event-card.skeleton {
+      background-color: #2a2a2a;
+
+      ion-skeleton-text {
+        --background-rgb: 60, 60, 60;
+        --background: rgba(var(--background-rgb), 0.3);
+      }
+    }
+
+    .events-container {
+      .events-carousel {
+        .events-scroll {
+          display: flex;
+          overflow-x: auto;
+          gap: 16px;
+          padding: 4px 0;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
+          transition: all 0.5s ease;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
+        .event-card {
+          background-color: #1e1e1e;
+
+          .event-link {
+            color: var(--povoa-light-blue);
+          }
+        }
+
+        .carousel-indicators {
+          .indicator-dot {
+            background-color: #4d4d4d;
+
+            &.active {
+              background-color: var(--povoa-blue);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ion-header {
+    ion-toolbar {
+      --color: var(--povoa-light-blue);
+    }
+
+    .topbar-container {
+      h1 {
+        color: var(--povoa-light-blue);
+      }
+
+      .city-info {
+        h1 {
+          color: var(--povoa-light-blue);
+        }
+
+        .slogan {
+          color: var(--povoa-light-blue);
+          opacity: 0.9;
+        }
+
+        .title-container {
+          h1 {
+            color: var(--povoa-light-blue);
+          }
+
+          .slogan {
+            color: var(--povoa-light-blue);
+            opacity: 0.9;
+          }
+        }
+      }
+
+      .weather {
+        color: white;
+        background-color: transparent; // Remover fundo no tema escuro
+      }
+    }
+
+    .breadcrumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      .breadcrumb-inner {
+        color: #a0a0a0;
+
+        span.current {
+          color: var(--povoa-light-blue);
+        }
+      }
+    }
+  }
+
+  ion-footer .menu-container {
+    background-color: #1e1e1e;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    .menu-item {
+      ion-icon {
+        color: #e0e0e0;
+      }
+
+      .menu-label {
+        color: #a0a0a0;
+      }
+
+      &.active {
+        background-color: transparent;
+        transform: translateY(0);
+
+        &::before {
+          background-color: var(--povoa-blue);
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: var(--povoa-blue);
+          border-radius: 50%;
+        }
+
+        ion-icon {
+          color: white;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-label {
+          color: white;
+        }
+      }
+    }
+  }
+}

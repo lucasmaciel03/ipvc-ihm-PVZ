@@ -1,0 +1,439 @@
+<app-header [showWeather]="true" currentPage="Explore"></app-header>
+
+<ion-content>
+  <div class="search-container">
+    <ion-searchbar placeholder="Pesquisar locais" animated></ion-searchbar>
+  </div>
+
+  <div class="section-title">
+    <div class="title-wrapper">
+      <h2>Recomendados</h2>
+      <ion-icon name="arrow-forward-circle" class="navigate-icon"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Recomendações container com ID direto para fácil seleção -->
+  <div
+    class="places-container recommendations-container"
+    id="recommendations-container"
+  >
+    <!-- Skeleton loader for recommendations -->
+    <div *ngIf="isLoadingRecommendations" class="places-skeleton">
+      <div class="places-scroll recommendations-scroll">
+        <div *ngFor="let i of [0,1,2,3]" class="place-card skeleton">
+          <div class="place-image skeleton-image">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </div>
+          <div class="place-info">
+            <h3>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 80%"
+              ></ion-skeleton-text>
+            </h3>
+            <div class="place-description">
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 90%"
+              ></ion-skeleton-text>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 70%"
+              ></ion-skeleton-text>
+            </div>
+            <div class="place-location">
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 60%"
+              ></ion-skeleton-text>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div
+      *ngIf="recommendationsError && !isLoadingRecommendations"
+      class="error-message"
+    >
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>{{ recommendationsError }}</p>
+    </div>
+
+    <!-- Sem recomendações disponíveis -->
+    <div
+      *ngIf="!isLoadingRecommendations && !recommendationsError && recommendations.length === 0"
+      class="no-places"
+    >
+      <p>Não há recomendações disponíveis no momento.</p>
+    </div>
+
+    <!-- Carrossel de recomendações -->
+    <div
+      *ngIf="!isLoadingRecommendations && !recommendationsError && recommendations.length > 0"
+      class="places-carousel"
+    >
+      <div class="places-scroll recommendations-scroll">
+        <div
+          *ngFor="let item of recommendations"
+          class="place-card recommendation-card"
+        >
+          <div
+            class="place-image"
+            [style.background-image]="'url(' + item.imageUrl + ')'"
+          >
+            <div class="place-overlay">
+              <div
+                class="place-type recommendation-badge"
+                [ngClass]="getRecommendationBadgeClass(item.type)"
+              >
+                <ion-icon [name]="getRecommendationIcon(item.type)"></ion-icon>
+                <span
+                  >{{ item.type === 'event' ? 'Evento' : item.type === 'place' ?
+                  'Local' : item.type === 'beach' ? 'Praia' : 'Turismo' }}</span
+                >
+              </div>
+              <div class="place-rating" *ngIf="item.rating">
+                <ion-icon name="star"></ion-icon>
+                <span>{{ item.rating }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="place-info">
+            <h3>{{ item.title }}</h3>
+            <!-- Truncate description and add ellipsis -->
+            <div class="place-description">
+              {{ item.description ? ((item.description.length > 100) ?
+              (item.description | slice:0:100) + '...' : item.description) : ''
+              }}
+            </div>
+            <div class="place-location-container">
+              <div class="location-wrapper">
+                <ion-icon name="location-outline"></ion-icon>
+                <div class="location-text">{{ item.location }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicadores de navegação -->
+      <div class="carousel-indicators" *ngIf="recommendations.length > 1">
+        <div
+          *ngFor="let item of recommendations; let i = index"
+          class="indicator-dot"
+          [class.active]="i === currentRecommendationIndex"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <div class="title-wrapper">
+      <h2>Locais Turísticos</h2>
+      <ion-icon name="arrow-forward-circle" class="navigate-icon"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Locais turísticos container com ID direto e classes mais específicas -->
+  <div
+    class="places-container turistic-places-container"
+    id="turistic-places-container"
+  >
+    <!-- Adicionar uma classe específica para o contêiner de locais turísticos -->
+
+    <!-- Skeleton loader for tourist places -->
+    <div *ngIf="isLoadingTuristicPlaces" class="places-skeleton">
+      <div class="places-scroll">
+        <div *ngFor="let i of [0,1,2,3]" class="place-card skeleton">
+          <div class="place-image skeleton-image">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </div>
+          <div class="place-info">
+            <h3>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 80%"
+              ></ion-skeleton-text>
+            </h3>
+            <div class="place-description">
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 90%"
+              ></ion-skeleton-text>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 70%"
+              ></ion-skeleton-text>
+            </div>
+            <div class="place-location">
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 60%"
+              ></ion-skeleton-text>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro - use turisticPlacesError -->
+    <div
+      *ngIf="turisticPlacesError && !isLoadingTuristicPlaces"
+      class="error-message"
+    >
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>{{ turisticPlacesError }}</p>
+    </div>
+
+    <!-- Sem locais disponíveis -->
+    <div
+      *ngIf="!isLoadingTuristicPlaces && !turisticPlacesError && turisticPlaces.length === 0"
+      class="no-places"
+    >
+      <p>Não há locais turísticos disponíveis no momento.</p>
+    </div>
+
+    <!-- Carrossel de locais turísticos com ID específico -->
+    <div
+      *ngIf="!isLoadingTuristicPlaces && !turisticPlacesError && turisticPlaces.length > 0"
+      class="places-carousel turistic-places-carousel"
+      id="turistic-places-carousel"
+    >
+      <div
+        class="places-scroll turistic-places-scroll"
+        id="turistic-places-scroll"
+      >
+        <!-- Turistic places cards with improved information display -->
+        <div
+          *ngFor="let place of turisticPlaces"
+          class="place-card turistic-place-card"
+        >
+          <div
+            class="place-image"
+            [style.background-image]="place.imagem ? 'url(' + place.imagem + ')' : 'url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop)'"
+          >
+            <div class="place-overlay">
+              <div class="place-type" *ngIf="place.tipo">
+                <ion-icon [name]="getPlaceTypeIcon(place.tipo)"></ion-icon>
+                <span>{{ place.tipo }}</span>
+              </div>
+
+              <!-- Add rating display if available -->
+              <div class="place-rating" *ngIf="place.rating">
+                <ion-icon name="star"></ion-icon>
+                <span>{{ place.rating }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="place-info">
+            <!-- Title is properly handled with innerHTML -->
+            <h3 [innerHTML]="place.nome | slice:0:65"></h3>
+
+            <!-- Truncate description and add ellipsis -->
+            <div class="place-description">
+              {{ place.descricao ? ((place.descricao.length > 100) ?
+              (place.descricao | slice:0:100) + '...' : place.descricao) : '' }}
+            </div>
+
+            <!-- Add schedule if available -->
+            <div class="place-schedule" *ngIf="place.horario">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{ place.horario }}</span>
+            </div>
+
+            <!-- Updated location section with better structure -->
+            <!-- <div class="place-location-container">
+              <div class="location-wrapper">
+                <ion-icon name="location-outline"></ion-icon>
+                <div class="location-text">
+                  {{ place.localizacao || 'Póvoa de Varzim' }}
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicadores de navegação com ID -->
+      <div
+        class="carousel-indicators"
+        id="turistic-places-indicators"
+        *ngIf="turisticPlaces.length > 1"
+      >
+        <div
+          *ngFor="let place of turisticPlaces; let i = index"
+          class="indicator-dot"
+          [class.active]="i === currentTuristicPlaceIndex"
+          (click)="navigateToTuristicPlace(i)"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <div class="title-wrapper">
+      <h2>Eventos</h2>
+      <ion-icon name="arrow-forward-circle" class="navigate-icon"></ion-icon>
+    </div>
+  </div>
+
+  <div class="events-container">
+    <!-- Skeleton loader for events -->
+    <div *ngIf="isLoading" class="events-skeleton">
+      <div class="events-scroll">
+        <div *ngFor="let i of [0,1,2]" class="event-card skeleton">
+          <div class="event-image skeleton-image">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </div>
+          <div class="event-info">
+            <h3>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 85%"
+              ></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 50%"
+              ></ion-skeleton-text>
+            </p>
+            <div class="event-excerpt">
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 100%"
+              ></ion-skeleton-text>
+              <ion-skeleton-text
+                [animated]="true"
+                style="width: 90%"
+              ></ion-skeleton-text>
+            </div>
+            <a class="event-link"
+              ><ion-skeleton-text
+                [animated]="true"
+                style="width: 30%"
+              ></ion-skeleton-text
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="error && !isLoading" class="error-message">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>{{ error }}</p>
+    </div>
+
+    <!-- Carrossel de eventos -->
+    <div *ngIf="!isLoading && !error" class="events-carousel">
+      <div *ngIf="eventos.length === 0" class="no-events">
+        <p>Não há eventos disponíveis no momento.</p>
+      </div>
+
+      <div class="events-scroll">
+        <div *ngFor="let evento of eventos" class="event-card">
+          <div
+            class="event-image"
+            [style.background-image]="evento.imageUrl ? 'url(' + evento.imageUrl + ')' : 'url(https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop)'"
+            style="height: 150px !important; min-height: 150px !important"
+          >
+            <!-- Fixed event date badge with proper null checking -->
+            <div class="event-date-badge">
+              <!-- If event_date exists in meta, use that -->
+              <ng-container *ngIf="evento.meta && evento.meta.event_date">
+                <span class="period">{{ evento.meta.event_date }}</span>
+              </ng-container>
+
+              <!-- If no event_date but start date exists, use that -->
+              <ng-container
+                *ngIf="evento.meta && !evento.meta.event_date && evento.meta._event_start_date"
+              >
+                <span class="day"
+                  >{{ evento.meta._event_start_date | date:'d' }}</span
+                >
+                <span class="month"
+                  >{{ evento.meta._event_start_date | date:'MMM' | uppercase
+                  }}</span
+                >
+              </ng-container>
+
+              <!-- Fallback to main date field if no meta dates available -->
+              <ng-container
+                *ngIf="!evento.meta?.event_date && !evento.meta?._event_start_date"
+              >
+                <span class="day">{{ evento.date | date:'d' }}</span>
+                <span class="month"
+                  >{{ evento.date | date:'MMM' | uppercase }}</span
+                >
+              </ng-container>
+            </div>
+          </div>
+          <div class="event-info">
+            <!-- Limitar o título a um comprimento razoável -->
+            <h3 [innerHTML]="evento.title?.rendered | slice:0:75"></h3>
+
+            <!-- Display event date information with fixed null checking -->
+            <p class="event-date-location">
+              <ion-icon name="calendar-outline"></ion-icon>
+              <span>
+                <!-- If event_date exists in meta, use that -->
+                <ng-container *ngIf="evento.meta && evento.meta.event_date">
+                  {{ evento.meta.event_date }}
+                </ng-container>
+
+                <!-- If there's a start and end date that are different -->
+                <ng-container
+                  *ngIf="evento.meta && !evento.meta.event_date && evento.meta._event_start_date && evento.meta._event_end_date && 
+                                     evento.meta._event_start_date !== evento.meta._event_end_date"
+                >
+                  {{ evento.meta._event_start_date | date:'d MMM':'':'pt' }} a
+                  {{ evento.meta._event_end_date | date:'d MMM yyyy':'':'pt' }}
+                </ng-container>
+
+                <!-- If only start date or same start/end date -->
+                <ng-container
+                  *ngIf="evento.meta && !evento.meta.event_date && evento.meta._event_start_date && 
+                                     (!evento.meta._event_end_date || evento.meta._event_start_date === evento.meta._event_end_date)"
+                >
+                  {{ evento.meta._event_start_date | date:'longDate':'':'pt' }}
+                </ng-container>
+
+                <!-- Fallback to main date if no meta dates -->
+                <ng-container
+                  *ngIf="!evento.meta?.event_date && !evento.meta?._event_start_date"
+                >
+                  {{ evento.date | date:'longDate':'':'pt' }}
+                </ng-container>
+
+                • {{ evento.meta?.location || 'Póvoa de Varzim' }}
+              </span>
+            </p>
+
+            <!-- Modificado para garantir que o excerpt seja exibido corretamente -->
+            <div
+              class="event-excerpt"
+              [innerHTML]="evento.excerpt?.rendered ? (extractTextFromHtml(evento.excerpt.rendered).length > 100 ? extractTextFromHtml(evento.excerpt.rendered).substring(0, 100) + '...' : extractTextFromHtml(evento.excerpt.rendered)) : ''"
+            ></div>
+            <a [href]="evento.link" target="_blank" class="event-link"
+              >Saber mais</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicadores de navegação (opcional) -->
+      <div class="carousel-indicators" *ngIf="eventos.length > 1">
+        <div
+          *ngFor="let evento of eventos; let i = index"
+          class="indicator-dot"
+          [class.active]="i === currentEventIndex"
+        ></div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer activePage="explore"></app-footer>

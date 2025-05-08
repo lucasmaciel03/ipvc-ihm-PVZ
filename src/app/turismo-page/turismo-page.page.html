@@ -1,0 +1,77 @@
+<app-header title="Turismo" currentPage="Turismo"></app-header>
+
+<ion-content>
+  <div class="turismo-section">
+    <div class="search-container">
+      <ion-searchbar placeholder="Pesquisar locais" animated></ion-searchbar>
+    </div>
+
+    <div class="categorias-container">
+      <div *ngFor="let categoria of categorias" 
+           class="categoria-item" 
+           [class.active]="filtroAtivo === categoria.nome || (categoria.nome === 'Todos' && !filtroAtivo)"
+           (click)="aplicarFiltro(categoria.nome)">
+        <ion-icon [name]="categoria.icone"></ion-icon>
+        <span>{{ categoria.nome }}</span>
+      </div>
+    </div>
+
+    <!-- Skeleton loader -->
+    <div *ngIf="isLoading" class="places-skeleton">
+      <div *ngFor="let i of [1,2,3,4,5,6]" class="place-card skeleton">
+        <div class="place-image skeleton-image">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </div>
+        <div class="place-info">
+          <h3><ion-skeleton-text [animated]="true" style="width: 80%"></ion-skeleton-text></h3>
+          <div class="place-description">
+            <ion-skeleton-text [animated]="true" style="width: 90%"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 70%"></ion-skeleton-text>
+          </div>
+          <div class="place-location">
+            <ion-skeleton-text [animated]="true" style="width: 60%"></ion-skeleton-text>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="error && !isLoading" class="error-message">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>{{ error }}</p>
+    </div>
+
+    <!-- Sem locais disponíveis -->
+    <div *ngIf="!isLoading && !error && getPlacesFiltrados().length === 0" class="no-places">
+      <p>Não foram encontrados locais turísticos para o filtro selecionado.</p>
+    </div>
+
+    <!-- Grid de locais turísticos -->
+    <div *ngIf="!isLoading && !error && getPlacesFiltrados().length > 0" class="places-grid">
+      <div *ngFor="let place of getPlacesFiltrados()" class="place-card">
+        <div class="place-image" [style.background-image]="place.imagem ? 'url(' + place.imagem + ')' : 'url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop)'">
+          <div class="place-overlay">
+            <div class="place-type" *ngIf="place.tipo">
+              <ion-icon [name]="getPlaceTypeIcon(place.tipo)"></ion-icon>
+              <span>{{ place.tipo }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="place-info">
+          <h3>{{ place.nome }}</h3>
+          <div class="place-description" *ngIf="place.descricao">{{ place.descricao | slice:0:120 }}</div>
+          <div class="place-location">
+            <ion-icon name="location-outline"></ion-icon>
+            <span>{{ place.localizacao || 'Póvoa de Varzim' }}</span>
+          </div>
+          <a [href]="place.link" target="_blank" class="place-link">
+            Ver mais detalhes
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer activePage="turismo"></app-footer>

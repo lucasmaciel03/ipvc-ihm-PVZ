@@ -1,0 +1,209 @@
+// Variáveis de cores da Póvoa de Varzim
+:host {
+  --povoa-blue: #004494;
+  --povoa-gold: #d4af37;
+  --povoa-light-blue: #0066cc;
+  --povoa-dark-blue: #003366;
+}
+
+// Estilos para o cabeçalho
+ion-header {
+  // Add these properties to fix transition issues
+  position: relative;
+  z-index: 10;
+  transition: opacity 0.15s ease;
+
+  ion-toolbar {
+    --background: var(--povoa-blue); // Fundo azul para contrastar com o logo branco
+    --color: white;
+    --min-height: 50px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --border-style: none;
+  }
+
+  .topbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    width: 100%;
+
+    .city-info {
+      display: flex;
+      align-items: center;
+      max-width: 70%;
+      padding-left: 5px;
+
+      .title-container {
+        margin-left: 2px;
+        align-items: flex-start;
+
+        .city-logo {
+          width: 120px;
+          height: 40px;
+          object-fit: contain;
+        }
+
+        // Show dark logo in light mode
+        .light-mode-logo {
+          display: block;
+        }
+
+        // Hide white logo in light mode
+        .dark-mode-logo {
+          display: none;
+        }
+      }
+    }
+
+    // Container para agrupar temperatura e ícone de perfil
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .weather {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: white; // Alterado para branco para contrastar com o fundo azul
+      background-color: transparent;
+      padding: 2px 0;
+      border-radius: 0;
+      min-width: 70px;
+      justify-content: flex-end;
+      gap: 2px;
+      margin-right: 0;
+
+      &.loading {
+        opacity: 0.7;
+      }
+
+      .weather-icon {
+        width: 34px;
+        height: 34px;
+        object-fit: contain;
+        margin: 0;
+      }
+
+      span {
+        padding-right: 0;
+        flex-shrink: 0;
+      }
+    }
+    
+    // Estilo para o ícone de perfil
+    .profile-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white; // Alterado para branco para contrastar com o fundo azul
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      padding: 5px;
+      border-radius: 50%;
+      
+      &:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+      
+      ion-icon {
+        font-size: 28px;
+      }
+    }
+  }
+
+  .breadcrumb {
+    background-color: var(--povoa-light-blue);
+    padding: 6px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .breadcrumb-inner {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.9);
+
+      span {
+        &.current {
+          color: white;
+          font-weight: 500;
+        }
+      }
+
+      ion-icon {
+        font-size: 10px;
+        margin: 0 4px;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+// Ajustes para o modo escuro
+@media (prefers-color-scheme: dark) {
+  ion-header {
+    ion-toolbar {
+      --background: transparent; // Retorna para transparente no modo escuro
+      --color: var(--povoa-light-blue);
+    }
+
+    .topbar-container {
+      .city-info {
+        .title-container {
+          // Hide dark logo in dark mode
+          .light-mode-logo {
+            display: none;
+          }
+
+          // Show white logo in dark mode
+          .dark-mode-logo {
+            display: block;
+          }
+
+          h1 {
+            color: var(--povoa-light-blue);
+          }
+
+          .slogan {
+            color: var(--povoa-light-blue);
+            opacity: 0.9;
+          }
+        }
+      }
+
+      .weather {
+        color: white;
+        background-color: transparent;
+      }
+      
+      // Ajuste para o ícone de perfil no modo escuro
+      .profile-icon {
+        color: var(--povoa-light-blue);
+      }
+    }
+
+    .breadcrumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      .breadcrumb-inner {
+        color: #a0a0a0;
+
+        span.current {
+          color: var(--povoa-light-blue);
+        }
+      }
+    }
+  }
+}

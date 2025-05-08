@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Eventos Locais</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let evento of eventos">
+    <img *ngIf="evento.imageUrl" [src]="evento.imageUrl" />
+    <ion-card-header>
+      <ion-card-title [innerHTML]="evento.title.rendered"></ion-card-title>
+      <ion-card-subtitle>{{ evento.date | date:'fullDate' }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content [innerHTML]="evento.excerpt.rendered"></ion-card-content>
+    <ion-button expand="full" (click)="abrirLink(evento.link)">Ver Mais</ion-button>
+  </ion-card>
+</ion-content>

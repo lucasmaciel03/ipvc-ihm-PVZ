@@ -1,0 +1,296 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Importação de fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Tipografia Personalizada
+ * -----------------------------------------------------
+ * Definições de tipografia para toda a aplicação
+ */
+
+:root {
+  /* Fontes Base */
+  --font-primary: "Raleway", sans-serif;
+  --font-secondary: "Montserrat", sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-abril: "Abril Fatface", cursive;
+  --font-poppins: "Poppins", sans-serif;
+  --font-ibm-plex: "IBM Plex Sans", sans-serif;
+  --font-signature: "Dancing Script", cursive;
+
+  /* Tamanhos de Fonte */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-md: 1.125rem; /* 18px */
+  --font-size-lg: 1.25rem; /* 20px */
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-2xl: 1.875rem; /* 30px */
+  --font-size-3xl: 2.25rem; /* 36px */
+  --font-size-4xl: 3rem; /* 48px */
+
+  /* Pesos de Fonte */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Espaçamento entre Letras */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+}
+
+/* Estilos Globais de Tipografia */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+}
+
+h5 {
+  font-size: var(--font-size-md);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+small {
+  font-size: var(--font-size-sm);
+}
+
+/* Ajustes para componentes Ionic */
+ion-title {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+ion-card-title {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+ion-button {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Add global text justification */
+p,
+.ion-text-wrap,
+ion-label,
+ion-text,
+.post-caption,
+.place-description,
+.event-excerpt,
+.modalidade-descricao,
+.aviso-content p,
+.evento-excerpt,
+.evento-description {
+  text-align: justify !important;
+}
+
+/* ===== FIX PARA OS CARDS NO MODO CLARO ===== */
+/* Esta correção se aplica globalmente para garantir consistência */
+
+// Estilo base para todos os cards no app
+.place-card,
+.place-card.turistic-place-card,
+.event-card {
+  background-color: white !important;
+
+  .place-info,
+  .event-info {
+    background-color: #1a1a1a !important;
+
+    h3 {
+      color: white !important;
+    }
+
+    .place-description,
+    .event-excerpt {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    .place-location,
+    p {
+      color: rgba(255, 255, 255, 0.6) !important;
+
+      ion-icon {
+        color: #d4af37 !important; /* --povoa-gold */
+      }
+    }
+
+    .event-link {
+      color: #d4af37 !important; /* --povoa-gold */
+    }
+  }
+}
+
+// Override para modo escuro
+@media (prefers-color-scheme: dark) {
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card {
+    background-color: #111111 !important;
+  }
+}
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* ===== ESTILO PARA O ALERTA DO PERFIL DO DESENVOLVEDOR ===== */
+.developer-profile-alert {
+  --backdrop-opacity: 0.8;
+  
+  .alert-wrapper {
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 90%;
+  }
+  
+  .alert-head {
+    background-color: var(--povoa-blue, #004494);
+    color: white;
+    padding: 16px;
+    text-align: center;
+    
+    h2 {
+      font-family: var(--font-secondary);
+      font-weight: var(--font-weight-semibold);
+      margin: 0;
+      font-size: 20px;
+    }
+    
+    h3 {
+      font-family: var(--font-poppins);
+      font-weight: var(--font-weight-medium);
+      margin: 5px 0 0;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+  }
+  
+  .alert-message {
+    padding: 0;
+    
+    a {
+      color: var(--povoa-blue, #004494);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .alert-button-group {
+    padding: 8px;
+    justify-content: center;
+    
+    button {
+      border-radius: 8px;
+      font-family: var(--font-poppins);
+      font-weight: var(--font-weight-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 10px 16px;
+      color: var(--povoa-blue, #004494);
+    }
+  }
+}
+
+// Ajuste para modo escuro
+@media (prefers-color-scheme: dark) {
+  .developer-profile-alert {
+    .alert-head {
+      background-color: var(--povoa-dark-blue, #003366);
+    }
+    
+    .alert-message a {
+      color: var(--povoa-light-blue, #0066cc);
+    }
+    
+    .alert-button-group button {
+      color: var(--povoa-light-blue, #0066cc);
+    }
+  }
+}

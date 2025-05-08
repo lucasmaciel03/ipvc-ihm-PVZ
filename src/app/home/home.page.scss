@@ -1,0 +1,661 @@
+// Estilo para a tela de boas-vindas
+.welcome-screen {
+  --background: transparent;
+  position: relative;
+  height: 100%;
+  overflow: hidden; // Para conter os elementos decorativos
+}
+
+// Fundo com imagem e overlay adaptativo ao tema
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/assets/images/maxresdefault.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  animation: subtle-zoom 30s infinite alternate ease-in-out;
+}
+
+// Animação de zoom sutil para o fundo
+@keyframes subtle-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+// Ondas animadas - versão invertida
+.animated-waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  width: 100vw; /* Usar viewport width para garantir largura total */
+  max-width: none; /* Remover qualquer limitação de largura máxima */
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23ffffff" /></svg>');
+  background-size: cover; /* Alterado para cover para melhor adaptação */
+  background-position: center bottom;
+  z-index: -1;
+  transform: rotate(180deg);
+  animation: subtle-wave 15s linear infinite alternate;
+  opacity: 0.7;
+  margin: 0; /* Remover qualquer margem */
+  padding: 0; /* Remover qualquer padding */
+  overflow: hidden; /* Garantir que não haja overflow */
+  left: 50%; /* Centralizar horizontalmente */
+  transform: translateX(-50%) rotate(180deg); /* Centralizar e manter a rotação */
+}
+
+@keyframes subtle-wave {
+  0% {
+    transform: translateX(-50%) rotate(180deg) translateY(0) scaleY(0.9);
+  }
+  100% {
+    transform: translateX(-50%) rotate(180deg) translateY(5px) scaleY(1);
+  }
+}
+
+// Máscara sobre a imagem de fundo
+.background-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  backdrop-filter: blur(2px);
+  transition: background-color 0.5s ease;
+}
+
+// Máscara escura para o modo escuro
+@media (prefers-color-scheme: dark) {
+  .background-overlay::after {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(20, 20, 40, 0.75));
+  }
+}
+
+// Máscara clara para o modo claro
+@media (prefers-color-scheme: light) {
+  .background-overlay::after {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 250, 0.7));
+  }
+  
+  .highlight {
+    color: white;
+    background-color: var(--povoa-blue);
+    box-shadow: 0 3px 8px rgba(0, 68, 148, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  
+  .main-title {
+    color: var(--povoa-blue);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .subtitle {
+    color: #333333;
+  }
+  
+  .custom-button {
+    background: linear-gradient(135deg, var(--povoa-blue), #0066cc); /* Mantém o gradiente azul original */
+    color: black !important; /* Texto preto no modo claro */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Mantém a borda original */
+    box-shadow: 0 3px 10px rgba(0, 68, 148, 0.4); /* Mantém a sombra original */
+  }
+  
+  .custom-button:hover {
+    background: linear-gradient(135deg, #0055b3, #0077e6); /* Mantém o hover original */
+    box-shadow: 0 6px 15px rgba(0, 68, 148, 0.5); /* Mantém a sombra original */
+  }
+  
+  .social-links ion-icon {
+    color: var(--povoa-blue);
+  }
+  
+  .discover-text {
+    color: #555555;
+  }
+}
+
+// Feature items - estilo mais sutil
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.2); /* Fundo branco translúcido */
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Borda branca mais visível */
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.3); /* Fundo um pouco mais opaco no hover */
+  border-color: var(--povoa-blue); /* Borda azul no hover */
+}
+
+.feature-item ion-icon {
+  font-size: 26px;
+  color: var(--povoa-blue) !important; /* Ícone azul da Póvoa */
+  margin-bottom: 8px;
+}
+
+.feature-item span {
+  font-family: var(--font-poppins);
+  font-size: 12px;
+  font-weight: 600;
+  color: white !important; /* Texto branco para contraste */
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Sombra para melhorar legibilidade */
+}
+
+// Ajuste para o modo claro
+@media (prefers-color-scheme: light) {
+  .feature-item span {
+    color: var(--povoa-blue) !important; /* Texto azul no modo claro */
+    text-shadow: none;
+  }
+}
+
+// Variáveis de cores da Póvoa de Varzim
+:root {
+  --povoa-blue: #004494; /* Azul da bandeira da Póvoa de Varzim */
+  --povoa-gold: #d4af37; /* Dourado para detalhes */
+}
+
+// Destaque para a palavra "VIVER" no slogan
+.highlight {
+  font-family: var(--font-poppins);
+  font-weight: 800;
+  font-size: 1.2em;
+  color: white;
+  background-color: var(--povoa-blue); /* Alterado para azul da Póvoa */
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  padding: 3px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: viver-highlight 3s infinite alternate;
+  transform: translateY(2px);
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borda branca sutil */
+}
+
+// Animação para o "viver" no estilo da imagem
+@keyframes viver-highlight {
+  0% {
+    transform: translateY(2px) scale(1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: translateY(2px) scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Adaptação para modo claro
+@media (prefers-color-scheme: light) {
+  .highlight {
+    color: white;
+    background-color: var(--povoa-blue); /* Azul da Póvoa */
+    box-shadow: 0 3px 8px rgba(0, 68, 148, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Elementos decorativos flutuantes
+.welcome-screen::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0) 70%);
+  top: -100px;
+  right: -100px;
+  z-index: -1;
+  animation: float-around 15s infinite alternate ease-in-out;
+}
+
+.welcome-screen::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0) 70%);
+  bottom: -50px;
+  left: -50px;
+  z-index: -1;
+  animation: float-around 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float-around {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 20px);
+  }
+  100% {
+    transform: translate(10px, 40px);
+  }
+}
+
+// Container principal de conteúdo
+.content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10% 24px 10%;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  animation: fade-in 1.2s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Acento decorativo no topo
+.header-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, transparent);
+  animation: expand-header 1.5s ease-out forwards;
+}
+
+@keyframes expand-header {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+// Indicador de localização
+.location-indicator {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  margin-bottom: -10px;
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  color: var(--ion-color-medium);
+  animation: slide-in 0.6s ease-out;
+  position: relative;
+  height: 40px; /* Adicionado para garantir espaço para a bandeira */
+}
+
+.location-indicator span {
+  font-size: 36px; /* Aumentado ainda mais o tamanho */
+  transform: rotate(-15deg); /* Inclinação mais acentuada */
+  display: inline-block;
+  position: absolute;
+  left: -20px; /* Movido mais para a esquerda */
+  bottom: -15px; /* Ajustado mais para baixo para ficar junto ao "P" */
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  animation: flag-wave 3s ease-in-out infinite alternate; /* Animação sutil */
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.15)); /* Sombra mais pronunciada */
+}
+
+/* Animação sutil para a bandeira */
+@keyframes flag-wave {
+  0% {
+    transform: rotate(-15deg) scale(1);
+  }
+  100% {
+    transform: rotate(-12deg) scale(1.05);
+  }
+}
+
+.location-indicator ion-icon {
+  margin-right: 5px;
+  color: #d4af37;
+}
+
+// Estilo para o título
+.title-container {
+  margin-bottom: 30px;
+}
+
+.main-title {
+  font-family: var(--font-poppins);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--ion-text-color);
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 0.9;
+  position: relative;
+  animation: slide-in 0.8s ease-out;
+}
+
+// Efeito de brilho no título
+.main-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, transparent);
+  animation: expand 1.5s ease-out forwards;
+}
+
+@keyframes expand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100px;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.subtitle {
+  font-family: var(--font-poppins);
+  font-size: 32px;
+  font-weight: 300;
+  font-style: normal;
+  color: var(--ion-color-medium);
+  margin: 10px 0 0;
+  letter-spacing: -0.01em;
+  animation: slide-in 0.8s 0.2s both ease-out;
+}
+
+// Container de características
+.features-container {
+  display: flex;
+  flex-direction: row; /* Garante que os itens fiquem em linha */
+  justify-content: center; /* Centraliza os itens */
+  align-items: center;
+  gap: 15px; /* Espaçamento uniforme entre os itens */
+  margin: 30px 0;
+  animation: fade-in 1.2s 0.4s both ease-out;
+  width: 100%;
+  flex-wrap: nowrap; /* Impede que os itens quebrem para a próxima linha */
+}
+
+// Botão personalizado
+.custom-button {
+  background: linear-gradient(135deg, var(--povoa-blue), #0066cc);
+  color: white;
+  border-radius: 24px; /* Aumentado para um botão mais arredondado */
+  padding: 14px 24px; /* Aumentado para um botão maior */
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  text-transform: none;
+  font-size: 16px; /* Aumentado para melhor legibilidade */
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 68, 148, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulse 2s infinite;
+  cursor: pointer;
+  user-select: none;
+  max-width: 220px; /* Aumentado para acomodar o texto maior */
+  width: auto;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Animação de pulsação sutil
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 3px 10px rgba(0, 68, 148, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 68, 148, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 3px 10px rgba(0, 68, 148, 0.4);
+  }
+}
+
+// Efeito de hover no botão
+.custom-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 68, 148, 0.5);
+  background: linear-gradient(135deg, #0055b3, #0077e6);
+}
+
+// Ajuste para o modo claro
+@media (prefers-color-scheme: light) {
+  .custom-button {
+    background: linear-gradient(135deg, var(--povoa-blue), #0066cc); /* Mantém o gradiente azul original */
+    color: black !important; /* Texto preto no modo claro */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Mantém a borda original */
+    box-shadow: 0 3px 10px rgba(0, 68, 148, 0.4); /* Mantém a sombra original */
+  }
+  
+  .custom-button:hover {
+    background: linear-gradient(135deg, #0055b3, #0077e6); /* Mantém o hover original */
+    box-shadow: 0 6px 15px rgba(0, 68, 148, 0.5); /* Mantém a sombra original */
+  }
+}
+
+// Efeito de clique no botão
+.custom-button:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 68, 148, 0.2);
+}
+
+// Efeito de brilho no botão - ajustado para ficar dentro dos limites
+.custom-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20%, 100% {
+    left: 100%;
+  }
+}
+
+// Adicionar ícone de seta após o texto
+.custom-button::before {
+  content: '→';
+  position: absolute;
+  right: 24px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.custom-button:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+// Adicionar efeito de partículas douradas ao redor do botão
+.button-container::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.3);
+  top: 10px; /* Movido para mais perto do botão */
+  right: 30px; /* Ajustado para ficar mais visível */
+  box-shadow:
+    15px 10px 0 rgba(212, 175, 55, 0.4),
+    -15px 20px 0 rgba(212, 175, 55, 0.5),
+    30px 30px 0 rgba(212, 175, 55, 0.3),
+    -30px 40px 0 rgba(212, 175, 55, 0.4),
+    20px 50px 0 rgba(212, 175, 55, 0.3);
+  animation: float-particles 5s infinite alternate ease-in-out;
+  z-index: -1; /* Para ficar atrás do botão */
+}
+
+@keyframes float-particles {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-20px) rotate(15deg);
+  }
+}
+
+// Estilo para o botão
+.button-container {
+  margin-top: auto;
+  width: 100%;
+  padding-bottom: 20px;
+  animation: bounce-in 1s 0.5s both ease-out;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizar conteúdo */
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  70% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.discover-text {
+  font-family: var(--font-poppins);
+  font-size: 15px; /* Aumentado para 15px */
+  color: var(--ion-color-medium);
+  margin-top: 12px; /* Aumentado para 12px */
+  text-align: center;
+  opacity: 0.9; /* Aumentado para melhor visibilidade */
+  max-width: 280px; /* Aumentado para acomodar texto maior */
+  line-height: 1.4; /* Melhor espaçamento entre linhas */
+  font-weight: 500; /* Um pouco mais destacado */
+}
+
+// Ajuste para o modo claro
+@media (prefers-color-scheme: light) {
+  .discover-text {
+    color: #333333; /* Texto mais escuro no modo claro */
+  }
+}
+
+// Links de redes sociais - posição ajustada para melhor compatibilidade mobile
+.social-links {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  z-index: 10;
+  padding: 10px;
+}
+
+.social-links ion-icon {
+  font-size: 20px;
+  color: var(--povoa-blue);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links ion-icon:hover {
+  color: var(--povoa-gold);
+  transform: scale(1.2);
+}
+
+// Adaptações para telas menores
+@media (max-width: 576px) {
+  .main-title {
+    font-size: 48px;
+  }
+  
+  .subtitle {
+    font-size: 24px;
+  }
+  
+  .features-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .feature-item {
+    width: 30%;
+    padding: 10px;
+  }
+  
+  .social-links {
+    bottom: 20px;
+    left: 0;
+    right: 0;
+  }
+}

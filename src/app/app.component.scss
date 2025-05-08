@@ -1,0 +1,46 @@
+.page-transition-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden; // Prevent content from bleeding outside container
+}
+
+ion-router-outlet {
+  width: 100%;
+  height: 100%;
+}
+
+:host ::ng-deep {
+  ion-content {
+    --background-transition: 0.3s ease all;
+  }
+
+  ion-page {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+  }
+
+  .ion-page-invisible {
+    opacity: 0;
+    z-index: 0; // Lower z-index for invisible pages
+    pointer-events: none; // Prevent interaction with invisible pages
+  }
+
+  .ion-page-visible {
+    opacity: 1;
+    z-index: 1; // Higher z-index for visible pages
+  }
+
+  // Fix for toolbar overlap
+  ion-header {
+    z-index: 10; // Ensure headers have consistent z-index
+    ion-toolbar {
+      --border-width: 0 !important; // Remove border that might cause visual glitches
+    }
+  }
+
+  // Ensure footer also has consistent z-index
+  ion-footer {
+    z-index: 10;
+  }
+}

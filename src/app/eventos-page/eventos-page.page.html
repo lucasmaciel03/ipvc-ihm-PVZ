@@ -1,0 +1,307 @@
+<app-header title="Eventos" currentPage="Eventos"></app-header>
+
+<ion-content>
+  <div class="eventos-section">
+    <div class="intro-section">
+      <h2>Agenda Cultural</h2>
+      <p>
+        Descubra os próximos eventos e atividades culturais na Póvoa de Varzim.
+        Desde festivais tradicionais a exposições de arte, concertos e muito
+        mais.
+      </p>
+    </div>
+
+    <!-- Search and filter section -->
+    <div class="search-filter-container">
+      <ion-searchbar
+        placeholder="Pesquisar eventos"
+        [(ngModel)]="searchTerm"
+        (ionInput)="applyFilters()"
+        animated
+      ></ion-searchbar>
+
+      <!-- Filter chip selection -->
+      <div class="filter-chips-container">
+        <div class="filter-chips-scroll">
+          <ion-chip
+            *ngFor="let category of eventCategories"
+            [class.selected]="selectedCategory === category.id"
+            (click)="filterByCategory(category.id)"
+          >
+            <ion-icon [name]="category.icon"></ion-icon>
+            <ion-label>{{ category.name }}</ion-label>
+          </ion-chip>
+
+          <!-- Month filter -->
+          <ion-chip
+            *ngFor="let month of eventMonths"
+            [class.selected]="selectedMonth === month.id"
+            (click)="filterByMonth(month.id)"
+          >
+            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-label>{{ month.name }}</ion-label>
+          </ion-chip>
+        </div>
+      </div>
+
+      <!-- Filter toggle button -->
+      <ion-button
+        expand="block"
+        fill="clear"
+        size="small"
+        class="filter-toggle-button"
+        (click)="toggleAdvancedFilters()"
+      >
+        {{ showAdvancedFilters ? 'Esconder filtros' : 'Mostrar mais filtros' }}
+        <ion-icon
+          [name]="showAdvancedFilters ? 'chevron-up-outline' : 'chevron-down-outline'"
+          slot="end"
+        ></ion-icon>
+      </ion-button>
+
+      <!-- Advanced filters panel -->
+      <div
+        class="advanced-filters-panel"
+        [class.show-filters]="showAdvancedFilters"
+      >
+        <!-- Date range filter -->
+        <div class="filter-section">
+          <h5>Período</h5>
+          <div class="date-range-selector">
+            <ion-item>
+              <ion-label position="stacked">Data Inicial</ion-label>
+              <ion-datetime-button datetime="startDate"></ion-datetime-button>
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime
+                    id="startDate"
+                    [(ngModel)]="dateFilter.startDate"
+                    (ionChange)="applyFilters()"
+                    presentation="date"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Data Final</ion-label>
+              <ion-datetime-button datetime="endDate"></ion-datetime-button>
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime
+                    id="endDate"
+                    [(ngModel)]="dateFilter.endDate"
+                    (ionChange)="applyFilters()"
+                    presentation="date"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-item>
+          </div>
+        </div>
+
+        <!-- Location filter -->
+        <div class="filter-section">
+          <h5>Local</h5>
+          <ion-list>
+            <ion-item *ngFor="let location of eventLocations">
+              <ion-checkbox
+                [(ngModel)]="location.selected"
+                (ionChange)="applyFilters()"
+                >{{ location.name }}</ion-checkbox
+              >
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <!-- Clear all filters button -->
+        <ion-button
+          expand="block"
+          class="clear-filters-button"
+          (click)="clearAllFilters()"
+        >
+          <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+          Limpar filtros
+        </ion-button>
+      </div>
+
+      <!-- Applied filters summary -->
+      <div class="applied-filters-summary" *ngIf="hasActiveFilters()">
+        <ion-chip *ngIf="filteredCount !== eventos.length" class="results-chip">
+          {{ filteredCount }} resultado{{ filteredCount !== 1 ? 's' : '' }}
+        </ion-chip>
+        <ion-chip
+          *ngIf="selectedCategory"
+          class="filter-chip"
+          (click)="filterByCategory(null)"
+        >
+          {{ getCategoryName(selectedCategory) }}
+          <ion-icon name="close-circle" slot="end"></ion-icon>
+        </ion-chip>
+        <ion-chip
+          *ngIf="selectedMonth"
+          class="filter-chip"
+          (click)="filterByMonth(null)"
+        >
+          {{ getMonthName(selectedMonth) }}
+          <ion-icon name="close-circle" slot="end"></ion-icon>
+        </ion-chip>
+        <ion-chip
+          *ngIf="dateFilter.startDate || dateFilter.endDate"
+          class="filter-chip"
+          (click)="clearDateFilter()"
+        >
+          {{ getDateFilterDisplay() }}
+          <ion-icon name="close-circle" slot="end"></ion-icon>
+        </ion-chip>
+        <ion-chip
+          *ngIf="hasLocationFilter()"
+          class="filter-chip"
+          (click)="clearLocationFilter()"
+        >
+          Locais ({{ getSelectedLocationCount() }})
+          <ion-icon name="close-circle" slot="end"></ion-icon>
+        </ion-chip>
+      </div>
+    </div>
+
+    <!-- Skeleton loader -->
+    <div *ngIf="isLoading" class="eventos-skeleton">
+      <div *ngFor="let i of [1,2,3,4]" class="evento-skeleton instagram-style">
+        <div class="evento-header">
+          <div class="evento-avatar">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </div>
+          <div class="evento-author">
+            <ion-skeleton-text
+              [animated]="true"
+              style="width: 70%"
+            ></ion-skeleton-text>
+            <ion-skeleton-text
+              [animated]="true"
+              style="width: 40%"
+            ></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="evento-image">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </div>
+        <div class="evento-info">
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 90%"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            [animated]="true"
+            style="width: 70%"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="error && !isLoading" class="error-message">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>{{ error }}</p>
+    </div>
+
+    <!-- No results message -->
+    <div
+      *ngIf="!isLoading && !error && filteredEventos.length === 0"
+      class="no-eventos"
+    >
+      <ion-icon name="search-outline"></ion-icon>
+      <p>Não foram encontrados eventos com os filtros aplicados.</p>
+      <ion-button fill="clear" (click)="clearAllFilters()"
+        >Limpar filtros</ion-button
+      >
+    </div>
+
+    <!-- Lista de eventos com design moderno -->
+    <div
+      *ngIf="!isLoading && !error && filteredEventos.length > 0"
+      class="eventos-list modern-cards"
+    >
+      <div
+        *ngFor="let evento of filteredEventos"
+        class="evento-card modern-card"
+      >
+        <!-- Imagem do evento com data em destaque -->
+        <div class="card-media-section">
+          <div
+            class="card-image"
+            [style.background-image]="evento.imageUrl ? 'url(' + evento.imageUrl + ')' : 'url(https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop)'"
+          > 
+            <div
+              *ngIf="getCategoryForEvent(evento)"
+              class="event-category-badge"
+            >
+              {{ getCategoryForEvent(evento) }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteúdo do evento -->
+        <div class="card-content">
+          <!-- Título do evento -->
+          <h3 class="card-title" [innerHTML]="evento.title?.rendered"></h3>
+
+          <!-- Metadados do evento -->
+          <div class="card-metadata">
+            <div class="metadata-item" *ngIf="evento.meta?.event_schedule">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{ evento.meta?.event_schedule }}</span>
+            </div>
+            <div class="metadata-item">
+              <ion-icon name="location-outline"></ion-icon>
+              <span>{{ evento.meta?.location || 'Póvoa de Varzim' }}</span>
+            </div>
+            <div class="metadata-item" *ngIf="evento.meta?.contacts">
+              <ion-icon name="call-outline"></ion-icon>
+              <span>{{ evento.meta?.contacts }}</span>
+            </div>
+          </div>
+
+          <!-- Descrição do evento -->
+          <div class="card-description">
+            <!-- Conteúdo completo do evento quando expandido -->
+            <div
+              *ngIf="isExpanded(evento.id)"
+              class="description-expanded"
+              [innerHTML]="evento.content?.rendered"
+            ></div>
+
+            <!-- Versão reduzida quando não expandido -->
+            <div
+              *ngIf="!isExpanded(evento.id)"
+              class="description-collapsed"
+              [innerHTML]="evento.excerpt?.rendered"
+            ></div>
+          </div>
+
+          <!-- Botões de ação -->
+          <div class="card-actions">
+            <button
+              class="action-button toggle-button"
+              (click)="toggleEventDetails(evento.id)"
+            >
+              {{ isExpanded(evento.id) ? 'Ver menos' : 'Ver mais informações' }}
+            </button>
+
+            <a
+              *ngIf="evento.link"
+              [href]="evento.link"
+              target="_blank"
+              class="action-button external-button"
+            >
+              <ion-icon name="globe-outline"></ion-icon>
+              <span>Página oficial</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer activePage="eventos"></app-footer>

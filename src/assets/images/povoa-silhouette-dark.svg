@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="400px" viewBox="0 0 800 400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>Póvoa Silhueta (Dark Mode)</title>
+    <g stroke="none" fill="#1a1a1a" fill-opacity="0.85">
+        <!-- Farol -->
+        <path d="M400,50 L420,50 L420,200 L440,210 L440,230 L380,230 L380,210 L400,200 Z"></path>
+        <!-- Base do farol -->
+        <path d="M360,230 L460,230 L470,250 L350,250 Z"></path>
+        
+        <!-- Barco de pesca tradicional à esquerda -->
+        <path d="M150,280 C150,280 180,260 220,280 C220,280 240,270 260,280 L260,300 L150,300 Z"></path>
+        <path d="M190,220 L190,280 L200,280 L200,220 Z"></path>
+        
+        <!-- Barco de pesca tradicional à direita -->
+        <path d="M550,290 C550,290 580,270 620,290 C620,290 640,280 660,290 L660,310 L550,310 Z"></path>
+        <path d="M590,230 L590,290 L600,290 L600,230 Z"></path>
+        
+        <!-- Ondas do mar -->
+        <path d="M0,320 C50,310 100,330 150,320 C200,310 250,330 300,320 C350,310 400,330 450,320 C500,310 550,330 600,320 C650,310 700,330 750,320 C800,310 850,330 900,320 L900,400 L0,400 Z"></path>
+        
+        <!-- Casas típicas -->
+        <path d="M50,270 L90,270 L90,320 L50,320 Z"></path>
+        <path d="M50,250 L90,250 L70,230 Z"></path>
+        
+        <path d="M100,280 L130,280 L130,320 L100,320 Z"></path>
+        <path d="M100,260 L130,260 L115,240 Z"></path>
+        
+        <path d="M700,270 L740,270 L740,320 L700,320 Z"></path>
+        <path d="M700,250 L740,250 L720,230 Z"></path>
+    </g>
+</svg>

@@ -1,0 +1,138 @@
+:host {
+  --povoa-blue: #004494;
+  --povoa-gold: #d4af37;
+  --povoa-light-blue: #0066cc;
+  --povoa-dark-blue: #003366;
+}
+
+// Estilos para o rodapé
+ion-footer {
+  position: relative;
+  z-index: 10;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+
+  .menu-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 12px 10px;
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 50px;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      position: relative;
+
+      ion-icon {
+        font-size: 22px;
+        color: #333;
+        transition: all 0.25s ease;
+        margin-bottom: 4px;
+      }
+
+      .menu-label {
+        font-size: 10px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      &.active {
+        background-color: transparent;
+        box-shadow: none;
+        transform: translateY(0);
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          background-color: var(--povoa-blue);
+          width: 56px;
+          height: 56px;
+          border-radius: 16px;
+          z-index: -1;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: var(--povoa-blue);
+          border-radius: 50%;
+        }
+
+        ion-icon {
+          color: var(--povoa-gold);
+          font-size: 24px;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-label {
+          color: white;
+          font-weight: 600;
+        }
+      }
+
+      &.tapped:not(.active) {
+        transform: scale(0.9);
+        opacity: 0.7;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+// Ajustes para o modo escuro
+@media (prefers-color-scheme: dark) {
+  ion-footer .menu-container {
+    background-color: #1e1e1e;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    .menu-item {
+      ion-icon {
+        color: #e0e0e0;
+      }
+
+      .menu-label {
+        color: #a0a0a0;
+      }
+
+      &.active {
+        background-color: transparent;
+        transform: translateY(0);
+
+        &::before {
+          background-color: var(--povoa-blue);
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        ion-icon {
+          color: white;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-label {
+          color: white;
+        }
+      }
+    }
+  }
+}

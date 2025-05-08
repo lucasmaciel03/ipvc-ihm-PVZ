@@ -1,0 +1,2858 @@
+// Variáveis de cores da Póvoa de Varzim
+:root {
+  --povoa-blue: #004494; /* Azul da bandeira da Póvoa de Varzim */
+  --povoa-gold: #d4af37; /* Dourado para detalhes */
+  --povoa-light-blue: #0066cc; /* Azul mais claro para gradientes */
+  --povoa-dark-blue: #003366; /* Azul mais escuro para sombras */
+}
+
+// Estilos para o cabeçalho
+ion-header {
+  ion-toolbar {
+    --background: transparent;
+    --color: var(--povoa-blue);
+    --min-height: 50px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --border-style: none;
+  }
+
+  .topbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px; // Adicionar padding horizontal para toda a barra
+    width: 100%;
+
+    .city-info {
+      display: flex;
+      align-items: center;
+      max-width: 70%;
+      padding-left: 5px; // Adicionar padding à esquerda
+
+      .logo-container {
+        margin-right: 8px;
+
+        .city-logo {
+          width: 1px;
+          height: 1px;
+          object-fit: contain;
+        }
+      }
+
+      .title-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 2px;
+        align-items: flex-start; // Alinha os elementos à esquerda
+
+        h1 {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 700; // Mais negrito
+          letter-spacing: 0.2px;
+          color: var(--povoa-blue);
+          text-align: left;
+          font-family: "Montserrat", sans-serif; // Fonte mais elegante
+          padding: 3px 0 2px 0; // Ajuste no padding inferior
+          line-height: 1.2; // Controlar espaçamento
+        }
+
+        .slogan {
+          margin: 0;
+          font-size: 10px;
+          font-weight: 500; // Mais negrito
+          color: var(--povoa-blue);
+          opacity: 0.85;
+          text-align: left;
+          font-style: italic; // Texto em itálico
+          letter-spacing: 0.5px; // Maior espaçamento entre letras
+          line-height: 1; // Linhas mais próximas
+          margin-top: -1px; // Subir ligeiramente para aproximar do título
+        }
+      }
+    }
+
+    .weather {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--povoa-blue);
+      background-color: transparent; // Remover fundo
+      padding: 2px 0; // Reduzir padding horizontal
+      border-radius: 0; // Remover borda arredondada
+      min-width: 90px; // Reduzir largura mínima
+      justify-content: flex-end; // Alinhar à direita
+      gap: 2px; // Reduzir gap entre ícone e temperatura
+      margin-right: 5px; // Adicionar margem à direita
+
+      &.loading {
+        opacity: 0.7;
+      }
+
+      .weather-icon {
+        width: 34px; // Reduzir um pouco mais para aproximar
+        height: 34px;
+        object-fit: contain;
+        margin: 0;
+      }
+
+      span {
+        padding-right: 10px; // Aumentar padding à direita
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .breadcrumb {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 6px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .breadcrumb-inner {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #666;
+
+      span {
+        &.current {
+          color: var(--povoa-blue);
+          font-weight: 500;
+        }
+      }
+
+      ion-icon {
+        font-size: 10px;
+        margin: 0 4px;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-poppins);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+  }
+}
+
+// Estilos para o conteúdo
+ion-content {
+  --background: #f5f7fa;
+  font-family: var(--font-poppins);
+
+  .search-container {
+    padding: 16px;
+
+    ion-searchbar {
+      --background: white;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --placeholder-color: #8e9aaf;
+      --icon-color: var(--povoa-blue);
+      --color: #333;
+      margin: 0;
+    }
+  }
+
+  .categories-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 16px;
+    overflow-x: auto;
+    gap: 12px;
+
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 12px;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+
+      &:active,
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 68, 148, 0.15);
+      }
+
+      ion-icon {
+        font-size: 24px;
+        color: var(--povoa-blue);
+        margin-bottom: 8px;
+      }
+
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        color: #333;
+        text-align: center;
+      }
+    }
+  }
+
+  .section-title {
+    padding: 0 16px;
+    margin: 20px 0 12px;
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    h2 {
+      font-family: var(--font-poppins);
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin: 0;
+    }
+
+    .navigate-icon {
+      color: var(--povoa-blue);
+      font-size: 20px;
+      margin-left: 8px;
+    }
+  }
+
+  .places-container {
+    padding: 0 16px;
+    margin-bottom: 24px;
+    position: relative;
+    min-height: 100px;
+
+    .places-skeleton {
+      width: 100%;
+
+      .places-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 4px 0;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .place-card.skeleton {
+        width: 260px;
+        min-width: 260px;
+        border-radius: 16px;
+        background-color: #f5f5f5;
+        overflow: hidden;
+        flex-shrink: 0;
+        height: 280px;
+        display: flex;
+        flex-direction: column;
+
+        .skeleton-image {
+          height: 160px;
+          position: relative;
+
+          ion-skeleton-text {
+            width: 100%;
+            height: 100%;
+            --border-radius: 0;
+            margin: 0;
+          }
+        }
+
+        .place-info {
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          justify-content: space-between;
+
+          h3 ion-skeleton-text {
+            height: 18px;
+            --border-radius: 4px;
+            margin: 0 0 8px;
+          }
+
+          .place-description ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin: 4px 0;
+          }
+
+          .place-location ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+
+    .error-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 15px auto;
+      background: rgba(255, 230, 230, 0.3);
+      border-radius: 12px;
+      width: 100%;
+
+      ion-icon {
+        font-size: 32px;
+        color: #ff4a4a;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: var(--font-poppins);
+        color: #ff4a4a;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+
+    .no-places {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      background-color: rgba(0, 68, 148, 0.05);
+      border-radius: 12px;
+      width: 100%;
+
+      p {
+        font-family: var(--font-poppins);
+        color: var(--povoa-blue);
+        font-size: 14px;
+        opacity: 0.8;
+        margin: 0;
+      }
+    }
+
+    .places-carousel {
+      width: 100%;
+
+      .places-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 4px 0;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        transition: all 0.5s ease;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+
+        &::-webkit-scrollbar {
+          display: none;
+          width: 0;
+          height: 0;
+        }
+      }
+
+      .place-card,
+      .place-card.turistic-place-card,
+      .event-card {
+        width: 280px; // Slight increase in width
+        min-width: 280px;
+        border-radius: 16px;
+        background-color: white; // Light background for white mode
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        flex-shrink: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        height: 280px; // Fixed height for consistency
+        border: none; // Remove border
+
+        .place-image,
+        .event-image {
+          height: 150px; // Match event card image height
+          background-size: cover;
+          background-position: center;
+          position: relative;
+        }
+
+        .place-info,
+        .event-info {
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1; // Allow this section to grow and fill available space
+          justify-content: space-between; // Space elements evenly
+          background-color: #1a1a1a; // Dark gray for info section in both modes
+
+          h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white; // White text for better contrast against dark background
+            font-family: var(--font-poppins) !important;
+            letter-spacing: 0.2px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; // Show max 2 lines
+            -webkit-box-orient: vertical;
+            line-height: 1.3;
+            max-height: 2.6em; // 2 lines x line-height
+          }
+
+          .place-description,
+          .event-excerpt {
+            margin: 0 0 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8); // Better contrast for readability
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-height: 1.4;
+            flex-grow: 1;
+            text-align: justify;
+
+            ::ng-deep p {
+              margin: 0;
+            }
+          }
+
+          .place-location,
+          p {
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15); // Slightly more visible separator
+            padding-top: 12px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7); // Better contrast for readability
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            ion-icon {
+              color: var(--povoa-gold);
+              font-size: 14px;
+              margin-right: 8px;
+              flex-shrink: 0;
+            }
+          }
+
+          .event-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--povoa-gold);
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:active {
+              opacity: 0.8;
+            }
+          }
+        }
+
+        .place-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.6) 0%,
+            rgba(0, 0, 0, 0.3) 30%,
+            rgba(0, 0, 0, 0.1) 60%,
+            rgba(0, 0, 0, 0) 100%
+          );
+
+          .place-type,
+          .place-rating {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+
+            ion-icon {
+              color: var(--povoa-gold);
+              font-size: 14px;
+              margin-right: 4px;
+            }
+
+            span {
+              font-size: 12px;
+              font-weight: 600;
+              color: white;
+            }
+          }
+
+          .place-rating {
+            left: auto;
+            right: 12px;
+            background-color: rgba(255, 255, 255, 0.9);
+
+            span {
+              color: #333;
+            }
+          }
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      // Specific styles for turistic place cards - completely revised styling
+      .place-card.turistic-place-card {
+        width: 280px;
+        min-width: 280px;
+        border: none;
+        background-color: #0e0e0e; // Darker background color for better contrast
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+        .place-image {
+          height: 160px;
+          position: relative;
+
+          .place-overlay {
+            background: linear-gradient(
+              to top,
+              rgba(0, 0, 0, 0.8) 0%,
+              rgba(0, 0, 0, 0.4) 30%,
+              rgba(0, 0, 0, 0.1) 60%,
+              rgba(0, 0, 0, 0) 100%
+            );
+
+            .place-type {
+              position: absolute;
+              top: 12px;
+              left: 12px;
+              background-color: rgba(0, 0, 0, 0.7);
+              border-radius: 6px;
+              backdrop-filter: blur(4px);
+
+              ion-icon {
+                color: var(--povoa-gold);
+              }
+            }
+          }
+        }
+
+        .place-info {
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          justify-content: space-between;
+          background-color: #0e0e0e; // Match with card background
+
+          h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            font-family: var(--font-poppins);
+            letter-spacing: 0.2px;
+          }
+
+          .place-description {
+            margin: 0 0 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8); // Better contrast for readability
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-height: 1.4;
+            flex-grow: 1;
+            text-align: justify;
+          }
+
+          .place-location {
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15); // Slightly more visible separator
+            padding-top: 12px;
+
+            ion-icon {
+              color: var(--povoa-gold);
+              font-size: 14px;
+              margin-right: 8px;
+              flex-shrink: 0;
+            }
+
+            span {
+              font-size: 12px;
+              color: rgba(
+                255,
+                255,
+                255,
+                0.7
+              ); // Better contrast for readability
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      // Specific styles for turistic place cards - making them match event cards
+      .place-card.turistic-place-card {
+        width: 280px; // Match event card width exactly
+        min-width: 280px;
+        border: none;
+        background-color: #111111; // Match exact event card background color
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Match event card shadow
+
+        .place-image {
+          height: 150px; // Match event card image height
+          position: relative;
+
+          .place-overlay {
+            background: linear-gradient(
+              to top,
+              rgba(0, 0, 0, 0.5) 0%,
+              rgba(0, 0, 0, 0.3) 30%,
+              rgba(0, 0, 0, 0.1) 60%,
+              rgba(0, 0, 0, 0) 100%
+            );
+
+            .place-type {
+              position: absolute;
+              top: 12px;
+              left: 12px;
+              background-color: rgba(0, 0, 0, 0.6);
+              border-radius: 6px;
+              backdrop-filter: blur(4px);
+
+              ion-icon {
+                color: var(--povoa-gold);
+              }
+            }
+          }
+        }
+
+        .place-info {
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          justify-content: space-between;
+          background-color: #111111; // Match exact event card background color
+
+          h3 {
+            margin: 0 0 5px; // Match event card title margin
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            font-family: var (--font-poppins);
+            letter-spacing: 0.2px;
+          }
+
+          .place-description {
+            margin: 8px 0; // Match event card description margin
+            font-size: 12px; // Match event excerpt font size
+            color: var (--ion-color-medium); // Match event excerpt color
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; // Match event excerpt line clamp
+            -webkit-box-orient: vertical;
+            line-height: 1.4;
+            flex-grow: 1;
+            text-align: justify;
+          }
+
+          .place-location {
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 0; // Remove padding to match event cards
+            border-top: none; // Remove border to match event cards
+
+            ion-icon {
+              color: var(--povoa-blue); // Match event link color
+              font-size: 14px;
+              margin-right: 4px; // Match event card spacing
+              flex-shrink: 0;
+            }
+
+            span {
+              font-size: 12px;
+              color: var (--ion-color-medium); // Match event text color
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+
+        .indicator-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #d4d4d4;
+          transition: all 0.3s ease;
+
+          &.active {
+            background-color: var(--povoa-blue);
+            width: 20px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .events-container {
+    padding: 0 16px;
+    margin-bottom: 24px;
+
+    .events-skeleton {
+      width: 100%;
+
+      .events-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 4px 0;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .event-card.skeleton {
+        width: 280px;
+        min-width: 280px;
+        border-radius: 16px;
+        background-color: #f5f5f5;
+        overflow: hidden;
+        flex-shrink: 0;
+
+        .skeleton-image {
+          height: 150px;
+          position: relative;
+
+          ion-skeleton-text {
+            width: 100%;
+            height: 100%;
+            --border-radius: 0;
+            margin: 0;
+          }
+        }
+
+        .event-info {
+          padding: 15px;
+
+          h3 ion-skeleton-text {
+            height: 18px;
+            --border-radius: 4px;
+            margin: 0 0 8px;
+          }
+
+          p ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin: 0 0 8px;
+          }
+
+          .event-excerpt ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin: 4px 0;
+          }
+
+          a.event-link ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin-top: 8px;
+            width: 80px;
+          }
+        }
+      }
+    }
+
+    .error-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 15px auto;
+      background: rgba(255, 230, 230, 0.3);
+      border-radius: 12px;
+
+      ion-icon {
+        font-size: 32px;
+        color: #ff4a4a;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: var(--font-poppins);
+        color: #ff4a4a;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+
+    .no-events {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      background-color: rgba(0, 68, 148, 0.05);
+      border-radius: 12px;
+      width: 100%;
+
+      p {
+        font-family: var(--font-poppins);
+        color: var(--povoa-blue);
+        font-size: 14px;
+        opacity: 0.8;
+        margin: 0;
+      }
+    }
+
+    .events-carousel {
+      width: 100%;
+
+      .events-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 4px 0;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        transition: all 0.5s ease;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .event-card {
+        width: 280px;
+        min-width: 280px;
+        background-color: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        border: none; // Remove border
+
+        .event-image {
+          height: 150px;
+          background-size: cover;
+          background-position: center;
+          height: 150px !important; // Força altura exata
+          min-height: 150px !important; // Garante altura mínima
+          max-height: 150px !important; // Limita altura máxima
+          background-size: cover !important; // Garante cobertura completa
+          background-position: center center !important; // Centraliza a imagem
+          object-fit: cover !important; // Garante que a imagem cobre o espaço
+          overflow: hidden !important; // Esconde qualquer overflow
+          position: relative !important;
+          display: block !important; // Força comportamento de bloco
+          width: 100% !important; // Garante largura completa
+        }
+
+        .event-info {
+          padding: 15px;
+
+          h3 {
+            font-family: var(--font-poppins);
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: var(--ion-text-color);
+          }
+
+          p {
+            font-family: var(--font-poppins);
+            font-size: 12px;
+            color: var(--ion-color-medium);
+            margin: 0;
+          }
+
+          .event-excerpt {
+            font-size: 12px;
+            color: var(--ion-color-medium);
+            margin: 8px 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-align: justify;
+
+            ::ng-deep p {
+              margin: 0;
+            }
+          }
+
+          .event-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--povoa-blue);
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:active {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+
+        .indicator-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #d4d4d4;
+          transition: all 0.3s ease;
+
+          &.active {
+            background-color: var(--povoa-blue);
+            width: 20px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+
+    // Também aplicar aos skeletons para manter consistência
+    .events-skeleton .event-card.skeleton .skeleton-image {
+      height: 150px !important;
+      min-height: 150px !important;
+      max-height: 150px !important;
+    }
+  }
+}
+
+// Unified card styling for both light and dark modes
+.place-card,
+.place-card.turistic-place-card,
+.event-card {
+  width: 280px;
+  min-width: 280px;
+  border-radius: 16px;
+  background-color: white; // Light background for white mode
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  border: none;
+
+  .place-image,
+  .event-image {
+    height: 150px;
+    min-height: 150px !important;
+    max-height: 150px !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    width: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+
+  .place-info,
+  .event-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    background-color: #1a1a1a; // Dark gray for info section in both modes
+
+    h3 {
+      margin: 0 0 5px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white; // White text for better contrast against dark background
+      font-family: var(--font-poppins) !important;
+      letter-spacing: 0.2px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.3;
+    }
+
+    .place-description,
+    .event-excerpt {
+      margin: 8px 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.4;
+      flex-grow: 1;
+      text-align: justify;
+      font-family: var(--font-poppins) !important;
+    }
+
+    .place-location,
+    p {
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 12px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-poppins) !important;
+
+      ion-icon {
+        color: var(--povoa-gold);
+        font-size: 14px;
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+    }
+
+    .event-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--povoa-gold);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: var(--font-poppins) !important;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// CORREÇÃO ESPECÍFICA - Cards no modo claro
+.place-card,
+.place-card.turistic-place-card,
+.event-card {
+  background-color: white !important; // Fundo branco para modo claro
+
+  .place-info,
+  .event-info {
+    background-color: #1a1a1a !important; // Fundo escuro para a área de informações em ambos os modos
+    color: white !important;
+
+    h3 {
+      color: white !important;
+      font-family: var(--font-poppins) !important;
+    }
+
+    .place-description,
+    .event-excerpt {
+      color: rgba(255, 255, 255, 0.7) !important;
+      font-family: var(--font-poppins) !important;
+    }
+
+    p,
+    .place-location {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-family: var(--font-poppins) !important;
+
+      ion-icon {
+        color: var(--povoa-gold) !important;
+      }
+    }
+
+    .event-link {
+      color: var(--povoa-gold) !important;
+      font-family: var(--font-poppins) !important;
+    }
+  }
+}
+
+// MELHOR CONFIGURAÇÃO DE CORES PARA O MODO CLARO (WHITE MODE)
+// Aplicado especificamente para a página Explore
+
+// Cards principais - modo claro
+.place-card,
+.place-card.turistic-place-card,
+.event-card {
+  background-color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+
+  .place-image,
+  .event-image {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .place-info,
+  .event-info {
+    background-color: white !important; // Fundo branco no modo claro
+    padding: 15px;
+
+    h3 {
+      color: #333333 !important; // Texto escuro para melhor contraste
+      font-weight: 600 !important;
+      margin-bottom: 8px !important;
+    }
+
+    .place-description,
+    .event-excerpt {
+      color: #666666 !important; // Cor mais escura para texto secundário
+      font-size: 12px !important;
+    }
+
+    .place-location,
+    p {
+      color: #666666 !important;
+      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+
+      ion-icon {
+        color: var(--povoa-blue) !important; // Usar a cor primária para ícones
+      }
+    }
+
+    .event-link {
+      color: var(--povoa-blue) !important; // Link com cor primária
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12) !important;
+  }
+}
+
+// Configuração específica para cards turísticos no modo claro
+.place-card.turistic-place-card {
+  .place-overlay {
+    .place-type {
+      background-color: rgba(
+        0,
+        68,
+        148,
+        0.8
+      ) !important; // Fundo semi-transparente da cor primária
+
+      ion-icon {
+        color: white !important;
+      }
+
+      span {
+        color: white !important;
+        font-weight: 500 !important;
+      }
+    }
+  }
+}
+
+// Configuração específica para cards de eventos no modo claro
+.events-carousel .event-card {
+  .event-info {
+    h3 {
+      font-size: 16px !important;
+    }
+
+    p {
+      padding-top: 10px !important;
+    }
+
+    .event-link {
+      font-weight: 500 !important;
+    }
+  }
+}
+
+// Ajustes para o modo escuro - manter o tema escuro quando esse modo estiver ativo
+@media (prefers-color-scheme: dark) {
+  // Reverter configurações específicas do modo claro
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card {
+    background-color: #1a1a1a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+
+    .place-info,
+    .event-info {
+      background-color: #1a1a1a !important;
+
+      h3 {
+        color: white !important;
+      }
+
+      .place-description,
+      .event-excerpt {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
+
+      .place-location,
+      p {
+        color: rgba(255, 255, 255, 0.6) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+        ion-icon {
+          color: var(--povoa-gold) !important;
+        }
+      }
+
+      .event-link {
+        color: var(--povoa-gold) !important;
+      }
+    }
+  }
+
+  // ...existing dark mode code...
+}
+
+// Modo escuro - manter consistência
+@media (prefers-color-scheme: dark) {
+  ion-content {
+    --background: #121212;
+
+    .search-container ion-searchbar {
+      --background: #1e1e1e;
+      --color: white;
+      --placeholder-color: #8e9aaf;
+    }
+
+    .category-item {
+      background-color: #1e1e1e;
+
+      span {
+        color: #e0e0e0;
+      }
+    }
+
+    .section-title {
+      h2 {
+        color: #e0e0e0;
+      }
+
+      .navigate-icon {
+        color: var(--povoa-light-blue);
+      }
+    }
+
+    .place-card,
+    .place-card.turistic-place-card,
+    .event-card {
+      background-color: #111111;
+
+      .place-info,
+      .event-info {
+        background-color: #1a1a1a; // Keep the same dark grey in dark mode
+
+        h3 {
+          color: #e0e0e0;
+        }
+
+        .place-description,
+        .event-excerpt,
+        .place-location,
+        p {
+          color: var(--ion-color-medium);
+        }
+
+        .event-link {
+          color: var(--povoa-gold);
+        }
+      }
+    }
+
+    .places-skeleton .place-card.skeleton,
+    .events-skeleton .event-card.skeleton {
+      background-color: #2a2a2a;
+
+      ion-skeleton-text {
+        --background-rgb: 60, 60, 60;
+        --background: rgba(var(--background-rgb), 0.3);
+      }
+    }
+
+    .events-container {
+      .events-carousel {
+        .events-scroll {
+          display: flex;
+          overflow-x: auto;
+          gap: 16px;
+          padding: 4px 0;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
+          transition: all 0.5s ease;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
+        .event-card {
+          background-color: #1e1e1e;
+
+          .event-link {
+            color: var(--povoa-light-blue);
+          }
+        }
+
+        .carousel-indicators {
+          .indicator-dot {
+            background-color: #4d4d4d;
+
+            &.active {
+              background-color: var(--povoa-blue);
+            }
+          }
+        }
+      }
+    }
+
+    .places-carousel .place-card.turistic-place-card {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Match event card shadow
+      border: none;
+      background-color: #111111; // Match event card background
+
+      .place-info {
+        background-color: #111111; // Match event card background
+
+        h3 {
+          color: #e0e0e0;
+        }
+
+        .place-description {
+          color: var(--ion-color-medium);
+        }
+
+        .place-location {
+          border-top: none; // Remove border to match event cards
+
+          ion-icon {
+            color: var(--povoa-blue); // Match event link color
+          }
+
+          span {
+            color: var(--ion-color-medium); // Match event text color
+          }
+        }
+      }
+    }
+
+    ion-header {
+      ion-toolbar {
+        --color: var(--povoa-light-blue);
+      }
+
+      .topbar-container {
+        h1 {
+          color: var(--povoa-light-blue);
+        }
+
+        .slogan {
+          color: var (--povoa-light-blue);
+          opacity: 0.9;
+        }
+
+        .title-container {
+          h1 {
+            color: var(--povoa-light-blue);
+          }
+
+          .slogan {
+            color: var(--povoa-light-blue);
+            opacity: 0.9;
+          }
+        }
+      }
+
+      .weather {
+        color: white;
+        background-color: transparent; // Remover fundo no tema escuro
+      }
+    }
+
+    .breadcrumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      .breadcrumb-inner {
+        color: #a0a0a0;
+
+        span.current {
+          color: var(--povoa-light-blue);
+        }
+      }
+    }
+  }
+
+  ion-footer .menu-container {
+    background-color: #1e1e1e;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    .menu-item {
+      ion-icon {
+        color: #e0e0e0;
+      }
+
+      .menu-label {
+        color: #a0a0a0;
+      }
+
+      &.active {
+        background-color: transparent;
+        transform: translateY(0);
+
+        &::before {
+          background-color: var(--povoa-blue);
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: var(--povoa-blue);
+          border-radius: 50%;
+        }
+
+        ion-icon {
+          color: white;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-label {
+          color: white;
+        }
+      }
+    }
+  }
+
+  // Force consistency in dark mode too
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card {
+    .place-info,
+    .event-info {
+      background-color: #1a1a1a !important;
+      h3,
+      .place-description,
+      .event-excerpt,
+      .place-location,
+      p,
+      .event-link {
+        font-family: var(--font-poppins) !important;
+      }
+    }
+  }
+
+  // Specific override for event cards in dark mode
+  .events-carousel .event-card .event-info {
+    background-color: #1a1a1a !important;
+
+    h3,
+    p,
+    .event-excerpt,
+    .event-link {
+      font-family: var(--font-poppins) !important;
+    }
+
+    .event-link {
+      color: var(--povoa-gold) !important;
+    }
+  }
+
+  // Force consistency for any remaining elements in dark mode
+  .places-carousel .place-card .place-info,
+  .events-carousel .event-card .event-info {
+    background-color: #1a1a1a !important;
+  }
+}
+
+// Estilos para os badges das recomendações
+.recommendation-badge {
+  ion-icon {
+    color: white !important;
+  }
+
+  &.badge-event {
+    background-color: rgba(218, 41, 28, 0.85) !important;
+  }
+
+  &.badge-place {
+    background-color: rgba(0, 68, 148, 0.85) !important;
+  }
+
+  &.badge-turistic {
+    background-color: rgba(0, 132, 112, 0.85) !important;
+  }
+
+  &.badge-beach {
+    background-color: rgba(252, 186, 3, 0.85) !important;
+
+    span,
+    ion-icon {
+      color: #333 !important;
+    }
+  }
+}
+
+// Melhorias específicas para cards de recomendação
+.recommendation-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  .place-info h3 {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    -webkit-line-clamp: 2 !important;
+  }
+
+  .place-description {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    -webkit-line-clamp: 2 !important;
+    margin: 8px 0 !important;
+  }
+
+  &:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+// Ajustes para modo escuro
+@media (prefers-color-scheme: dark) {
+  // ...existing dark mode code...
+
+  .recommendation-badge {
+    &.badge-event {
+      background-color: rgba(228, 61, 48, 0.9) !important;
+    }
+
+    &.badge-place {
+      background-color: rgba(0, 102, 204, 0.9) !important;
+    }
+
+    &.badge-turistic {
+      background-color: rgba(0, 152, 132, 0.9) !important;
+    }
+
+    &.badge-beach {
+      background-color: rgba(252, 196, 23, 0.9) !important;
+    }
+  }
+}
+
+// UNIFORMIZAÇÃO COMPLETA DE TODOS OS CARROSSÉIS
+// Este bloco substitui todas as personalizações individuais para garantir consistência total
+
+// Base comum para todos os carrosséis
+.places-container,
+.events-container,
+.recommendations-container {
+  padding: 0 16px;
+  margin-bottom: 24px;
+  position: relative;
+
+  // Container de scroll
+  .places-scroll,
+  .events-scroll,
+  .recommendations-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 4px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transition: all 0.5s ease;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+
+    // Remove scrollbar em todos os navegadores
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  // Estilo padrão para todos os tipos de cards
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    width: 280px;
+    min-width: 280px;
+    height: 280px;
+    border-radius: 16px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    border: none;
+
+    // Imagens com tamanho exato
+    .place-image,
+    .event-image {
+      height: 150px !important;
+      min-height: 150px !important;
+      max-height: 150px !important;
+      background-size: cover !important;
+      background-position: center center !important;
+      width: 100% !important;
+      display: block !important;
+      overflow: hidden !important;
+      position: relative !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    // Área de informações
+    .place-info,
+    .event-info {
+      padding: 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex-grow: 1 !important;
+      justify-content: space-between !important;
+      background-color: white !important;
+
+      // Título
+      h3 {
+        margin: 0 0 8px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: #333333 !important;
+        font-family: var(--font-poppins) !important;
+        letter-spacing: 0.2px !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        line-height: 1.3 !important;
+        max-height: 2.6em !important;
+      }
+
+      // Descrição
+      .place-description,
+      .event-excerpt {
+        margin: 8px 0 !important;
+        font-size: 12px !important;
+        color: #666666 !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        line-height: 1.4 !important;
+        flex-grow: 1 !important;
+        text-align: justify !important;
+        font-family: var(--font-poppins) !important;
+
+        ::ng-deep p {
+          margin: 0 !important;
+        }
+      }
+
+      // Localização e outras informações
+      .place-location,
+      p {
+        display: flex !important;
+        align-items: center !important;
+        margin-top: 12px !important;
+        padding-top: 12px !important;
+        font-size: 12px !important;
+        color: #666666 !important;
+        font-family: var(--font-poppins) !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+
+        ion-icon {
+          color: var(--povoa-blue) !important;
+          font-size: 14px !important;
+          margin-right: 8px !important;
+          flex-shrink: 0 !important;
+        }
+      }
+
+      // Links
+      .event-link {
+        display: inline-block !important;
+        margin-top: 8px !important;
+        color: var(--povoa-blue) !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        text-decoration: none !important;
+        font-family: var(--font-poppins) !important;
+
+        &:active {
+          opacity: 0.8 !important;
+        }
+      }
+    }
+
+    // Overlay para ícones e badges
+    .place-overlay {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(0, 0, 0, 0.1) 60%,
+        rgba(0, 0, 0, 0) 100%
+      ) !important;
+
+      // Tipo de lugar
+      .place-type,
+      .recommendation-badge {
+        position: absolute !important;
+        top: 12px !important;
+        left: 12px !important;
+        background-color: rgba(0, 68, 148, 0.8) !important;
+        border-radius: 6px !important;
+        backdrop-filter: blur(4px) !important;
+        padding: 4px 8px !important;
+        display: flex !important;
+        align-items: center !important;
+
+        ion-icon {
+          color: white !important;
+          font-size: 14px !important;
+          margin-right: 4px !important;
+        }
+
+        span {
+          font-size: 12px !important;
+          font-weight: 500 !important;
+          color: white !important;
+        }
+      }
+
+      // Rating
+      .place-rating {
+        position: absolute !important;
+        top: 12px !important;
+        right: 12px !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border-radius: 6px !important;
+        padding: 4px 8px !important;
+        display: flex !important;
+        align-items: center !important;
+
+        ion-icon {
+          color: var(--povoa-gold) !important;
+          font-size: 14px !important;
+          margin-right: 4px !important;
+        }
+
+        span {
+          font-size: 12px !important;
+          font-weight: 600 !important;
+          color: #333 !important;
+        }
+      }
+    }
+
+    // Hover state
+    &:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12) !important;
+    }
+  }
+
+  // Skeletons uniformizados
+  .places-skeleton,
+  .events-skeleton {
+    width: 100% !important;
+
+    .places-scroll,
+    .events-scroll {
+      display: flex !important;
+      overflow-x: auto !important;
+      gap: 16px !important;
+      padding: 4px 0 !important;
+
+      &::-webkit-scrollbar {
+        display: none !important;
+      }
+    }
+
+    .place-card.skeleton,
+    .event-card.skeleton {
+      width: 280px !important;
+      min-width: 280px !important;
+      height: 280px !important;
+      border-radius: 16px !important;
+      background-color: #f5f5f5 !important;
+      overflow: hidden !important;
+      flex-shrink: 0 !important;
+
+      .skeleton-image {
+        height: 150px !important;
+        min-height: 150px !important;
+        max-height: 150px !important;
+        position: relative !important;
+
+        ion-skeleton-text {
+          width: 100% !important;
+          height: 100% !important;
+          --border-radius: 0 !important;
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+
+  // Indicadores de navegação padronizados
+  .carousel-indicators {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 16px !important;
+    height: 16px !important;
+
+    .indicator-dot {
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
+      background-color: #d4d4d4 !important;
+      transition: all 0.3s ease !important;
+      opacity: 0.6 !important;
+
+      &.active {
+        background-color: var(--povoa-blue) !important;
+        width: 20px !important;
+        border-radius: 10px !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+// Modo escuro - override específico com consistência total
+@media (prefers-color-scheme: dark) {
+  .places-container,
+  .events-container,
+  .recommendations-container {
+    .place-card,
+    .place-card.turistic-place-card,
+    .event-card,
+    .recommendation-card {
+      background-color: #1a1a1a !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+
+      .place-info,
+      .event-info {
+        background-color: #1a1a1a !important;
+
+        h3 {
+          color: white !important;
+        }
+
+        .place-description,
+        .event-excerpt {
+          color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .place-location,
+        p {
+          color: rgba(255, 255, 255, 0.6) !important;
+          border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+          ion-icon {
+            color: var(--povoa-gold) !important;
+          }
+        }
+
+        .event-link {
+          color: var(--povoa-gold) !important;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+      }
+    }
+
+    .places-skeleton .place-card.skeleton,
+    .events-skeleton .event-card.skeleton {
+      background-color: #2a2a2a !important;
+
+      ion-skeleton-text {
+        --background-rgb: 60, 60, 60 !important;
+        --background: rgba(var(--background-rgb), 0.3) !important;
+      }
+    }
+
+    .carousel-indicators .indicator-dot {
+      background-color: #4d4d4d !important;
+
+      &.active {
+        background-color: var(--povoa-blue) !important;
+      }
+    }
+  }
+}
+
+// Estilos específicos para badges de recomendação no modo claro e escuro
+.recommendation-badge {
+  &.badge-event {
+    background-color: rgba(218, 41, 28, 0.85) !important;
+  }
+
+  &.badge-place {
+    background-color: rgba(0, 68, 148, 0.85) !important;
+  }
+
+  &.badge-turistic {
+    background-color: rgba(0, 132, 112, 0.85) !important;
+  }
+
+  &.badge-beach {
+    background-color: rgba(252, 186, 3, 0.85) !important;
+
+    span,
+    ion-icon {
+      color: #333 !important;
+    }
+  }
+}
+
+// Badges de recomendação no modo escuro
+@media (prefers-color-scheme: dark) {
+  .recommendation-badge {
+    &.badge-event {
+      background-color: rgba(228, 61, 48, 0.9) !important;
+    }
+
+    &.badge-place {
+      background-color: rgba(0, 102, 204, 0.9) !important;
+    }
+
+    &.badge-turistic {
+      background-color: rgba(0, 152, 132, 0.9) !important;
+    }
+
+    &.badge-beach {
+      background-color: rgba(252, 196, 23, 0.9) !important;
+
+      span {
+        color: #333 !important;
+      }
+    }
+  }
+}
+
+// Fix for location area visibility in cards
+.places-container,
+.events-container,
+.recommendations-container {
+  // ...existing code...
+
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    // ...existing code...
+
+    .place-info,
+    .event-info {
+      // ...existing code...
+
+      // Fix location visibility issues
+      .place-location,
+      p {
+        display: flex !important;
+        align-items: center !important;
+        margin-top: 12px !important;
+        padding-top: 12px !important;
+        font-size: 12px !important;
+        color: #666666 !important;
+        font-family: var(--font-poppins) !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+        overflow: visible !important; // Changed from hidden to visible
+        text-overflow: initial !important; // Changed from ellipsis to initial
+        white-space: normal !important; // Changed from nowrap to normal
+        max-width: 100% !important; // Ensure max width
+
+        ion-icon {
+          color: var(--povoa-blue) !important;
+          font-size: 14px !important;
+          margin-right: 8px !important;
+          flex-shrink: 0 !important;
+        }
+
+        span {
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          display: -webkit-box !important;
+          -webkit-line-clamp: 2 !important; // Allow up to 2 lines
+          -webkit-box-orient: vertical !important;
+          line-height: 1.3 !important;
+        }
+      }
+    }
+  }
+
+  // Dark mode adjustment for the location
+  @media (prefers-color-scheme: dark) {
+    .place-card,
+    .place-card.turistic-place-card,
+    .event-card,
+    .recommendation-card {
+      .place-info,
+      .event-info {
+        .place-location,
+        p {
+          color: rgba(255, 255, 255, 0.6) !important;
+          border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+    }
+  }
+}
+
+// New, more specific fix for location display
+.place-location-container {
+  display: flex !important;
+  align-items: flex-start !important;
+  margin-top: 12px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  width: 100% !important;
+
+  ion-icon {
+    color: var(--povoa-blue) !important;
+    font-size: 14px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+    margin-top: 2px !important;
+  }
+
+  .location-text {
+    font-size: 12px !important;
+    color: #666666 !important;
+    font-family: var(--font-poppins) !important;
+    line-height: 1.4 !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+    max-width: calc(100% - 22px) !important;
+  }
+}
+
+// Fallback fix for existing place-location elements
+.place-info .place-location,
+.event-info p {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: flex !important;
+  align-items: flex-start !important;
+
+  ion-icon {
+    margin-top: 2px !important;
+  }
+
+  span {
+    max-width: calc(100% - 22px) !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+  }
+}
+
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+  .place-location-container {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    ion-icon {
+      color: var(--povoa-gold) !important;
+    }
+
+    .location-text {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+
+  .place-info .place-location,
+  .event-info p {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    ion-icon {
+      color: var(--povoa-gold) !important;
+    }
+
+    span,
+    div {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+}
+
+// Increase card size throughout the application
+.places-container,
+.events-container,
+.recommendations-container {
+  // Larger cards for better content visibility
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    width: 300px !important; // Increased from 280px
+    min-width: 300px !important; // Increased from 280px
+    height: 300px !important; // Increased from 280px to provide more space
+
+    // Increase image height proportionally
+    .place-image,
+    .event-image {
+      height: 160px !important; // Increased from 150px
+      min-height: 160px !important;
+      max-height: 160px !important;
+    }
+
+    // Fix content area spacing
+    .place-info,
+    .event-info {
+      padding: 16px !important; // Increased padding
+
+      // More visible separation for location
+      .place-location,
+      p {
+        margin-top: 14px !important; // Slightly more space above
+        padding-top: 14px !important; // Slightly more space above
+      }
+    }
+  }
+}
+
+// Completely redesigned location container with more space
+.place-location-container {
+  display: block !important; // Changed to block display
+  margin-top: 14px !important; // More space above
+  padding-top: 14px !important; // More space above
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  width: 100% !important;
+  overflow: visible !important;
+  position: relative !important;
+
+  ion-icon {
+    color: var(--povoa-blue) !important;
+    font-size: 14px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+    position: absolute !important;
+    top: 14px !important;
+    left: 0 !important;
+  }
+
+  .location-text {
+    font-size: 12px !important;
+    color: #666666 !important;
+    font-family: var(--font-poppins) !important;
+    line-height: 1.4 !important;
+    padding-left: 24px !important; // Make space for the icon
+    width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: block !important;
+    min-height: 20px !important;
+  }
+}
+
+// Backward compatibility fix for non-updated cards
+.place-info .place-location,
+.event-info p {
+  display: flex !important;
+  margin-top: 12px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  width: 100% !important;
+  overflow: visible !important;
+  position: relative !important;
+
+  ion-icon {
+    color: var(--povoa-blue) !important;
+    font-size: 14px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+    position: absolute !important;
+    top: 14px !important;
+    left: 0 !important;
+  }
+
+  // Use a span inside for text
+  span,
+  div {
+    font-size: 12px !important;
+    color: #666666 !important;
+    font-family: var(--font-poppins) !important;
+    line-height: 1.4 !important;
+    padding-left: 24px !important; // Make space for the icon
+    width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: block !important;
+  }
+}
+
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+  .place-location-container {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    ion-icon {
+      color: var(--povoa-gold) !important;
+    }
+
+    .location-text {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+
+  .place-info .place-location,
+  .event-info p {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    ion-icon {
+      color: var(--povoa-gold) !important;
+    }
+
+    span,
+    div {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+}
+
+// Further increase card size for better content visibility, especially for location
+.places-container,
+.events-container,
+.recommendations-container {
+  // Larger cards for better content visibility
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    width: 320px !important; // Increased from 300px
+    min-width: 320px !important; // Increased from 300px
+    height: 340px !important; // Significantly increased from 300px to provide more space
+
+    // Increase image height proportionally
+    .place-image,
+    .event-image {
+      height: 170px !important; // Increased from 160px
+      min-height: 170px !important;
+      max-height: 170px !important;
+    }
+
+    // Fix content area spacing
+    .place-info,
+    .event-info {
+      height: 170px !important; // Fixed height for the info section
+      padding: 18px !important; // Increased padding for more space
+
+      // Optimize space for description
+      .place-description,
+      .event-excerpt {
+        max-height: 75px !important; // Control height to leave space for location
+        margin-bottom: 12px !important; // More space below description
+      }
+
+      // More visible separation for location and dedicated area
+      .place-location,
+      p {
+        margin-top: 16px !important; // More space above
+        padding-top: 16px !important; // More space above
+        min-height: 40px !important; // Minimum height to accommodate text
+      }
+    }
+  }
+}
+
+// Completely redesigned location container with significant more space and better structure
+.place-location-container {
+  display: block !important;
+  margin-top: 16px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  width: 100% !important;
+  min-height: 42px !important; // Increased minimum height
+  position: relative !important;
+
+  .location-wrapper {
+    display: flex !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+
+  ion-icon {
+    color: var(--povoa-blue) !important;
+    font-size: 18px !important; // Larger icon
+    margin-right: 10px !important; // More space after icon
+    flex-shrink: 0 !important;
+    position: relative !important;
+    top: 2px !important;
+  }
+
+  .location-text {
+    font-size: 13px !important; // Larger font
+    color: #666666 !important;
+    font-family: var(--font-poppins) !important;
+    line-height: 1.5 !important;
+    flex: 1 !important;
+    width: calc(100% - 28px) !important; // Account for larger icon
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    max-height: none !important; // Remove maximum height constraint
+  }
+}
+
+// Update skeleton to match new sizes
+.places-container,
+.events-container,
+.recommendations-container {
+  .places-skeleton,
+  .events-skeleton {
+    .place-card.skeleton,
+    .event-card.skeleton {
+      width: 320px !important;
+      min-width: 320px !important;
+      height: 340px !important;
+
+      .skeleton-image {
+        height: 170px !important;
+        min-height: 170px !important;
+        max-height: 170px !important;
+      }
+    }
+  }
+}
+
+// Dark mode adjustments for the enhanced location container
+@media (prefers-color-scheme: dark) {
+  .place-location-container {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    ion-icon {
+      color: var(--povoa-gold) !important;
+    }
+
+    .location-text {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+}
+
+// Enhanced event date styles for better prominence
+.event-card {
+  position: relative !important;
+
+  .event-date-badge {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    background-color: var(--povoa-blue) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-width: 50px !important;
+    text-align: center !important;
+
+    // Styles for normal day/month display
+    .day {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      padding: 4px 8px 0 !important;
+      line-height: 1 !important;
+    }
+
+    .month {
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      width: 100% !important;
+      padding: 2px 0 !important;
+      letter-spacing: 0.5px !important;
+    }
+
+    // Styles for period display (like "13 a 20 de abril")
+    .period {
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      padding: 8px 12px !important;
+      text-align: center !important;
+      line-height: 1.2 !important;
+    }
+  }
+
+  .event-info {
+    // ...existing code...
+
+    .event-date-location {
+      display: flex !important;
+      align-items: flex-start !important; // Change to flex-start to align properly with wrapped text
+      margin: 5px 0 10px !important;
+      color: var(--povoa-blue) !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+
+      ion-icon {
+        margin-right: 6px !important;
+        font-size: 16px !important;
+        color: var(--povoa-blue) !important;
+        flex-shrink: 0 !important;
+        margin-top: 2px !important; // Align icon with first line of text
+      }
+
+      span {
+        overflow: visible !important; // Allow text to wrap
+        white-space: normal !important; // Allow text to wrap
+        text-overflow: clip !important;
+        line-height: 1.4 !important;
+      }
+    }
+  }
+}
+
+// Dark mode adjustments remain the same
+@media (prefers-color-scheme: dark) {
+  .event-card {
+    .event-date-badge {
+      background-color: var(--povoa-gold) !important;
+      color: #333 !important;
+
+      .month,
+      .period {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        color: #333 !important;
+      }
+    }
+
+    .event-info {
+      .event-date-location {
+        color: var(--povoa-gold) !important;
+
+        ion-icon {
+          color: var(--povoa-gold) !important;
+        }
+      }
+    }
+  }
+}
+
+// Correção para títulos cortados e descrições de eventos invisíveis
+.places-container,
+.events-container,
+.recommendations-container {
+  // ...existing code...
+
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    // ...existing code...
+
+    // Fix content area spacing - ajustes para mostrar mais texto
+    .place-info,
+    .event-info {
+      height: auto !important; // Remover altura fixa para permitir conteúdo flexível
+      min-height: 170px !important; // Altura mínima que ainda mantém a aparência
+      max-height: none !important; // Remover limite máximo de altura
+      padding: 16px !important;
+
+      // Melhorar visualização do título
+      h3 {
+        margin: 0 0 8px !important;
+        font-size: 15px !important; // Reduzir ligeiramente o tamanho da fonte
+        -webkit-line-clamp: 3 !important; // Permitir 3 linhas para o título
+        max-height: none !important; // Remover limite de altura máxima
+        line-height: 1.3 !important;
+      }
+
+      // Melhorar visualização da descrição
+      .place-description,
+      .event-excerpt {
+        margin: 8px 0 10px !important;
+        font-size: 12px !important;
+        -webkit-line-clamp: 3 !important; // Permitir 3 linhas para descrição
+        max-height: none !important; // Remover limite de altura máxima
+        overflow: visible !important; // Garantir que o texto seja visível
+
+        ::ng-deep p {
+          margin: 0 !important;
+          display: inline !important; // Manter parágrafos na mesma linha
+        }
+      }
+    }
+  }
+}
+
+// Correção específica para a exibição de datas de eventos
+.event-card {
+  // ...existing code...
+
+  .event-info {
+    // ...existing code...
+
+    // Melhorar visibilidade da data e localização do evento
+    .event-date-location {
+      margin: 5px 0 8px !important;
+      display: flex !important;
+      align-items: flex-start !important;
+
+      span {
+        display: block !important;
+        overflow: visible !important;
+        white-space: normal !important;
+        text-overflow: clip !important;
+        line-height: 1.3 !important;
+        font-size: 12px !important;
+      }
+    }
+
+    // Garantir que a descrição do evento seja visível
+    .event-excerpt {
+      flex-grow: 1 !important;
+      margin: 8px 0 !important;
+
+      ::ng-deep p {
+        display: inline !important;
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
+// Garantir que a data do evento tenha o tamanho adequado quando é um período
+.event-date-badge {
+  // ...existing code...
+
+  .period {
+    font-size: 11px !important; // Reduzir tamanho de fonte para períodos longos
+    padding: 6px 8px !important; // Ajustar padding para melhor encaixe
+    max-width: 100px !important; // Largura máxima para evitar overflow
+  }
+}
+
+// Melhorar o container de localização
+.place-location-container {
+  // ...existing code...
+
+  .location-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    align-items: flex-start !important;
+  }
+
+  .location-text {
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    display: block !important;
+    white-space: normal !important;
+  }
+}
+
+// ...existing code...
+
+// CRITICAL FIXES FOR CARD CONTENT VISIBILITY
+.places-container,
+.events-container,
+.recommendations-container {
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    // Increase overall card height to fit more content
+    height: 350px !important;
+    min-height: 350px !important;
+
+    .place-info,
+    .event-info {
+      // Remove fixed height to let content flow naturally
+      height: auto !important;
+      min-height: 170px !important;
+      max-height: none !important;
+
+      // Increase title visibility
+      h3 {
+        margin: 0 0 10px !important;
+        font-size: 17px !important;
+        font-weight: 600 !important;
+        -webkit-line-clamp: 3 !important;
+        max-height: none !important;
+        line-height: 1.3 !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+
+      // Fix description visibility
+      .place-description,
+      .event-excerpt {
+        margin: 10px 0 15px !important;
+        font-size: 14px !important;
+        -webkit-line-clamp: 4 !important;
+        max-height: none !important;
+        overflow: visible !important;
+
+        ::ng-deep p {
+          margin: 0 !important;
+          display: inline !important;
+        }
+      }
+
+      // Fix location display
+      .place-location-container,
+      p.event-date-location {
+        margin-top: 15px !important;
+        white-space: normal !important;
+        overflow: visible !important;
+
+        .location-text,
+        span {
+          white-space: normal !important;
+          overflow: visible !important;
+        }
+      }
+    }
+  }
+
+  // Adjust card spacing for the new sizes
+  .places-scroll,
+  .events-scroll,
+  .recommendations-scroll {
+    padding-bottom: 20px !important;
+  }
+}
+
+// Event card specific fixes
+.event-card {
+  .event-info {
+    .event-date-location {
+      white-space: normal !important;
+      overflow: visible !important;
+
+      span {
+        white-space: normal !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+    }
+
+    .event-excerpt {
+      ::ng-deep p {
+        display: inline !important;
+      }
+    }
+  }
+}
+
+// Fix for event date badge
+.event-date-badge {
+  .period {
+    font-size: 10px !important;
+    padding: 5px 7px !important;
+    max-width: 100px !important;
+  }
+}
+
+// Refine description styling to match the shortened content
+.places-container,
+.events-container,
+.recommendations-container {
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    // ...existing code...
+
+    .place-info,
+    .event-info {
+      // ...existing code...
+
+      // Style description with custom ellipsis
+      .place-description,
+      .event-excerpt {
+        // ...existing code...
+        margin: 8px 0 10px !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        color: #666666 !important;
+        overflow: visible !important;
+        text-align: left !important; // Left align for better readability
+        font-family: var(--font-poppins) !important;
+
+        // Add subtle indicator for truncated text
+        &:after {
+          content: "";
+          display: block;
+          height: 4px;
+          width: 100%;
+          margin-top: 5px;
+          opacity: 0.15;
+          background: linear-gradient(to right, var(--povoa-blue), transparent);
+        }
+      }
+    }
+  }
+}
+
+// FIX OVERLAY HEIGHT TO MATCH IMAGE EXACTLY
+.places-container,
+.events-container,
+.recommendations-container {
+  .place-card,
+  .place-card.turistic-place-card,
+  .event-card,
+  .recommendation-card {
+    // ...existing code...
+
+    .place-image,
+    .event-image {
+      height: 170px !important;
+      min-height: 170px !important;
+      max-height: 170px !important;
+      position: relative !important; // Ensure position relative for absolute overlay positioning
+      overflow: hidden !important; // Ensure overflow is hidden to contain overlay
+
+      // Fix overlay to exactly match image dimensions
+      .place-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important; // Use bottom:0 to ensure it covers exactly the image height
+        height: 100% !important; // Explicitly set height to 100% of parent
+        width: 100% !important; // Explicitly set width to 100% of parent
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.6) 0%,
+          rgba(0, 0, 0, 0.3) 30%,
+          rgba(0, 0, 0, 0.1) 60%,
+          rgba(0, 0, 0, 0) 100%
+        ) !important;
+        pointer-events: none !important; // Allow clicking through to image
+
+        // But enable pointer events for interactive elements inside overlay
+        .place-type,
+        .recommendation-badge,
+        .place-rating {
+          pointer-events: auto !important;
+        }
+      }
+    }
+
+    // ...existing code...
+  }
+}
+
+// Ensure overlay is contained within image section for all card types
+.place-card .place-overlay,
+.place-card.turistic-place-card .place-overlay,
+.event-card .place-overlay,
+.recommendation-card .place-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}

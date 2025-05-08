@@ -1,0 +1,1521 @@
+// Variáveis de cores da Póvoa de Varzim
+:root {
+  --povoa-blue: #004494; /* Azul da bandeira da Póvoa de Varzim */
+  --povoa-gold: #d4af37; /* Dourado para detalhes */
+  --povoa-light-blue: #0066cc; /* Azul mais claro para gradientes */
+  --povoa-dark-blue: #003366; /* Azul mais escuro para sombras */
+  --instagram-gray: #fafafa;
+  --instagram-border: #dbdbdb;
+  --instagram-text: #262626;
+  --instagram-secondary: #8e8e8e;
+  --card-bg: #ffffff;
+  --card-text: #333333;
+  --card-secondary: #666666;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --card-radius: 16px;
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+// Estilos para o cabeçalho
+ion-header {
+  ion-toolbar {
+    --background: transparent;
+    --color: var(--povoa-blue);
+    --min-height: 50px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --border-style: none;
+  }
+
+  .topbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    width: 100%;
+
+    .city-info {
+      .title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        h1 {
+          margin: 0;
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--povoa-blue);
+          font-family: "Montserrat", sans-serif;
+        }
+
+        .slogan {
+          margin: 0;
+          font-size: 12px;
+          color: var(--povoa-blue);
+          opacity: 0.85;
+        }
+      }
+    }
+  }
+
+  .breadcrumb {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 6px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .breadcrumb-inner {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #666;
+
+      span {
+        &.current {
+          color: var(--povoa-blue);
+          font-weight: 500;
+        }
+      }
+
+      ion-icon {
+        font-size: 10px;
+        margin: 0 4px;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+// Estilos para o conteúdo
+ion-content {
+  --background: #f5f7fa;
+  font-family: var(--font-poppins);
+
+  .eventos-section {
+    padding: 16px;
+
+    // Seção de introdução
+    .intro-section {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+      h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--povoa-blue);
+        margin: 0 0 12px 0;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #666;
+        margin: 0;
+        text-align: justify;
+      }
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+
+      h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
+    }
+
+    // Skeleton loaders estilo Instagram
+    .eventos-skeleton {
+      .evento-skeleton {
+        background-color: #f5f5f5;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        .evento-image {
+          height: 180px;
+
+          ion-skeleton-text {
+            width: 100%;
+            height: 100%;
+            --border-radius: 0;
+            margin: 0;
+          }
+        }
+
+        .evento-info {
+          padding: 16px;
+
+          h3 ion-skeleton-text {
+            height: 20px;
+            --border-radius: 4px;
+            margin: 0 0 10px;
+          }
+
+          p ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin: 0 0 12px;
+          }
+
+          .evento-excerpt ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin: 4px 0;
+          }
+        }
+      }
+
+      .evento-skeleton.instagram-style {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+        .evento-header {
+          display: flex;
+          padding: 12px;
+          align-items: center;
+
+          .evento-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+
+            ion-skeleton-text {
+              width: 100%;
+              height: 100%;
+              --border-radius: 50%;
+              margin: 0;
+            }
+          }
+
+          .evento-author {
+            flex: 1;
+
+            ion-skeleton-text {
+              height: 14px;
+              --border-radius: 4px;
+              margin-bottom: 4px;
+            }
+
+            ion-skeleton-text:last-child {
+              margin-bottom: 0;
+              height: 12px;
+            }
+          }
+        }
+
+        .evento-image {
+          width: 100%;
+          aspect-ratio: 1/1;
+
+          ion-skeleton-text {
+            width: 100%;
+            height: 100%;
+            --border-radius: 0;
+            margin: 0;
+          }
+        }
+
+        .evento-actions {
+          padding: 12px;
+
+          ion-skeleton-text {
+            height: 20px;
+            --border-radius: 4px;
+          }
+        }
+
+        .evento-info {
+          padding: 0 12px 12px;
+
+          ion-skeleton-text {
+            height: 14px;
+            --border-radius: 4px;
+            margin-bottom: 6px;
+          }
+
+          ion-skeleton-text:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .error-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 15px auto;
+      background: rgba(255, 230, 230, 0.3);
+      border-radius: 12px;
+
+      ion-icon {
+        font-size: 32px;
+        color: #ff4a4a;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #ff4a4a;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+
+    .no-eventos {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 160px;
+      background-color: rgba(0, 68, 148, 0.05);
+      border-radius: 12px;
+      margin-bottom: 16px;
+
+      ion-icon {
+        font-size: 36px;
+        color: var(--povoa-blue);
+        opacity: 0.5;
+        margin-bottom: 12px;
+      }
+
+      p {
+        color: var(--povoa-blue);
+        font-size: 14px;
+        opacity: 0.8;
+        margin: 0 0 12px 0;
+        text-align: center;
+      }
+
+      ion-button {
+        --color: var(--povoa-blue);
+        font-size: 13px;
+      }
+    }
+
+    // Estilo de Instagram para a lista de eventos
+    .eventos-list {
+      .evento-card {
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 16px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        .evento-image {
+          height: 180px;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .evento-info {
+          padding: 16px;
+
+          h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            color: #333;
+          }
+
+          p {
+            font-size: 12px;
+            color: #666;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+          }
+
+          .evento-excerpt {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+
+            ::ng-deep p {
+              margin: 0;
+            }
+          }
+
+          .evento-link {
+            display: inline-block;
+            color: var(--povoa-blue);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:active {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      &.instagram-feed {
+        .evento-card.instagram-post {
+          background-color: white;
+          border-radius: 8px;
+          overflow: hidden;
+          margin-bottom: 16px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+          .post-header {
+            display: flex;
+            padding: 12px;
+            align-items: center;
+
+            .post-avatar {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              overflow: hidden;
+              margin-right: 10px;
+              background-color: var(--povoa-blue);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              img {
+                width: 85%;
+                height: 85%;
+                object-fit: contain;
+              }
+            }
+
+            .post-author {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+
+              .author-name {
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--instagram-text);
+                line-height: 1.2;
+              }
+
+              .post-location {
+                font-size: 12px;
+                color: var(--instagram-secondary);
+                line-height: 1.2;
+              }
+            }
+          }
+
+          .post-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background-size: cover;
+            background-position: center;
+          }
+
+          .post-content {
+            padding: 12px 12px 16px;
+
+            h3 {
+              font-size: 15px;
+              font-weight: 600;
+              margin: 0 0 8px 0;
+              color: var(--instagram-text);
+            }
+
+            .post-caption {
+              font-size: 14px;
+              color: var(--instagram-text);
+              margin-bottom: 8px;
+              overflow: hidden;
+              line-height: 1.4;
+              text-align: justify;
+
+              // Only apply the clamp when not expanded
+              &:not(.expanded) {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+              }
+
+              // When expanded, add some transition and padding
+              &.expanded {
+                transition: all 0.3s ease;
+                padding-bottom: 8px;
+
+                // Style for paragraphs in expanded content
+                ::ng-deep p {
+                  margin-bottom: 12px;
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+                }
+              }
+
+              ::ng-deep p {
+                margin: 0;
+              }
+            }
+
+            .event-contacts {
+              font-size: 13px;
+              color: var(--instagram-text);
+              margin-bottom: 10px;
+
+              strong {
+                color: var(--povoa-blue);
+              }
+            }
+
+            .post-view-more {
+              display: inline-block;
+              color: var(--povoa-blue);
+              font-size: 13px;
+              font-weight: 600;
+              text-decoration: none;
+              margin-top: 4px;
+              background: none;
+              border: none;
+              padding: 0;
+              cursor: pointer;
+              text-align: left;
+
+              &:active {
+                opacity: 0.7;
+              }
+            }
+          }
+        }
+      }
+
+      &.social-feed {
+        .evento-card.social-post {
+          background-color: white;
+          border-radius: 12px;
+          overflow: hidden;
+          margin-bottom: 16px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+          .post-header {
+            display: flex;
+            padding: 12px 16px;
+            align-items: flex-start;
+
+            .post-avatar {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              overflow: hidden;
+              margin-right: 12px;
+              background-color: var(--povoa-blue);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+
+              img {
+                width: 85%;
+                height: 85%;
+                object-fit: contain;
+              }
+            }
+
+            .post-author {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+
+              .author-name {
+                font-size: 15px;
+                font-weight: 600;
+                color: var(--instagram-text);
+                line-height: 1.3;
+                margin-bottom: 6px;
+              }
+
+              .event-metadata {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                margin-top: 2px;
+
+                .event-date,
+                .event-time,
+                .event-location {
+                  display: flex;
+                  align-items: center;
+                  font-size: 13px;
+                  color: var(--instagram-secondary);
+
+                  ion-icon {
+                    font-size: 15px;
+                    margin-right: 6px;
+                    color: var(--povoa-blue);
+                    opacity: 0.8;
+                  }
+                }
+              }
+            }
+          }
+
+          .event-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+            padding: 0 16px 12px;
+            color: var(--povoa-blue);
+            line-height: 1.3;
+          }
+
+          .post-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-size: cover;
+            background-position: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+          }
+
+          .post-content {
+            padding: 16px;
+
+            .post-caption {
+              font-size: 14px;
+              color: var(--instagram-text);
+              margin-bottom: 12px;
+              overflow: hidden;
+              line-height: 1.5;
+              text-align: justify;
+
+              // Only apply the clamp when not expanded
+              &:not(.expanded) {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+              }
+
+              // When expanded, add some transition and padding
+              &.expanded {
+                transition: all 0.3s ease;
+                padding-bottom: 8px;
+
+                // Style for paragraphs in expanded content
+                ::ng-deep p {
+                  margin-bottom: 12px;
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+                }
+              }
+
+              ::ng-deep p {
+                margin: 0;
+              }
+            }
+
+            .event-contacts {
+              font-size: 13px;
+              color: var(--instagram-text);
+              margin-bottom: 12px;
+              padding: 10px;
+              background-color: rgba(0, 68, 148, 0.05);
+              border-radius: 8px;
+
+              strong {
+                color: var(--povoa-blue);
+              }
+            }
+
+            .post-view-more {
+              display: inline-block;
+              color: var(--povoa-blue);
+              font-size: 14px;
+              font-weight: 600;
+              text-decoration: none;
+              padding: 6px 0;
+              background: none;
+              border: none;
+              cursor: pointer;
+              text-align: left;
+
+              &:active {
+                opacity: 0.7;
+              }
+            }
+          }
+        }
+      }
+
+      &.modern-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px;
+        margin-bottom: 24px;
+
+        .evento-card.modern-card {
+          background-color: var(--card-bg);
+          border-radius: var(--card-radius);
+          overflow: hidden;
+          box-shadow: var(--card-shadow);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--card-border);
+          height: 100%;
+
+          &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+          }
+
+          .card-media-section {
+            position: relative;
+
+            .card-image {
+              height: 180px;
+              background-size: cover;
+              background-position: center;
+              position: relative;
+
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(
+                  180deg,
+                  rgba(0, 0, 0, 0.2) 0%,
+                  rgba(0, 0, 0, 0) 40%
+                );
+              }
+
+              .event-date-badge {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background-color: var(--povoa-blue);
+                color: white;
+                border-radius: 12px;
+                padding: 8px 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-width: 50px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 2;
+
+                .date-day {
+                  font-size: 18px;
+                  font-weight: 700;
+                  line-height: 1.1;
+                }
+
+                .date-month {
+                  font-size: 12px;
+                  font-weight: 500;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                }
+              }
+            }
+          }
+
+          .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+
+            .card-title {
+              font-size: 18px;
+              font-weight: 700;
+              color: var(--card-text);
+              margin: 0 0 12px;
+              line-height: 1.3;
+            }
+
+            .card-metadata {
+              display: flex;
+              flex-direction: column;
+              gap: 6px;
+              margin-bottom: 16px;
+
+              .metadata-item {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                color: var(--card-secondary);
+
+                ion-icon {
+                  color: var(--povoa-blue);
+                  font-size: 16px;
+                  margin-right: 8px;
+                  flex-shrink: 0;
+                }
+
+                span {
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+
+            .card-description {
+              margin-bottom: 20px;
+              flex-grow: 1;
+              color: var(--card-secondary);
+
+              .description-collapsed {
+                font-size: 14px;
+                line-height: 1.5;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                text-align: justify;
+
+                ::ng-deep p {
+                  margin: 0 0 8px;
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+                }
+              }
+
+              .description-expanded {
+                font-size: 14px;
+                line-height: 1.5;
+                text-align: justify;
+
+                ::ng-deep p {
+                  margin: 0 0 12px;
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+                }
+              }
+            }
+
+            .card-actions {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 10px;
+              margin-top: auto;
+
+              .action-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px 16px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &.toggle-button {
+                  background-color: var(--povoa-blue);
+                  color: white;
+                  border: none;
+
+                  &:hover,
+                  &:focus {
+                    background-color: var(--povoa-dark-blue);
+                  }
+
+                  &:active {
+                    transform: scale(0.97);
+                  }
+                }
+
+                &.external-button {
+                  background-color: transparent;
+                  color: var(--povoa-blue);
+                  border: 1px solid var(--povoa-blue);
+                  text-decoration: none;
+
+                  ion-icon {
+                    margin-right: 6px;
+                    font-size: 16px;
+                  }
+
+                  &:hover,
+                  &:focus {
+                    background-color: rgba(0, 68, 148, 0.05);
+                  }
+
+                  &:active {
+                    transform: scale(0.97);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Add new styles for the filtering system */
+    .search-filter-container {
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: var(--card-radius);
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      ion-searchbar {
+        --border-radius: 8px;
+        --box-shadow: none;
+        --background: #f5f7fa;
+        padding: 0;
+        margin-bottom: 12px;
+      }
+
+      .filter-chips-container {
+        margin-bottom: 12px;
+        overflow: hidden;
+
+        .filter-chips-scroll {
+          display: flex;
+          overflow-x: auto;
+          padding-bottom: 4px;
+          gap: 8px;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          ion-chip {
+            margin: 0;
+            flex-shrink: 0;
+            --background: #f5f7fa;
+            --color: var(--card-secondary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+
+            &.selected {
+              --background: var(--povoa-blue);
+              --color: white;
+              box-shadow: 0 2px 4px rgba(0, 68, 148, 0.2);
+            }
+
+            ion-icon {
+              color: var(--povoa-blue);
+              margin-right: 4px;
+            }
+
+            &.selected ion-icon {
+              color: white;
+            }
+          }
+        }
+      }
+
+      .filter-toggle-button {
+        margin: 0;
+        --padding-start: 0;
+        --padding-end: 0;
+        height: 36px;
+        font-size: 13px;
+        --color: var(--povoa-blue);
+        margin-bottom: 8px;
+      }
+
+      .advanced-filters-panel {
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        border-top: 1px solid transparent;
+
+        &.show-filters {
+          height: auto;
+          opacity: 1;
+          margin-top: 8px;
+          padding-top: 16px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-section {
+          margin-bottom: 16px;
+
+          h5 {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            color: var(--card-text);
+          }
+
+          .date-range-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+
+            ion-item {
+              --background: transparent;
+              --padding-start: 0;
+              --inner-padding-end: 0;
+              --border-color: rgba(0, 0, 0, 0.1);
+
+              ion-label {
+                color: var(--card-secondary);
+                font-size: 12px;
+                margin-bottom: 4px;
+              }
+            }
+          }
+
+          ion-list {
+            background: transparent;
+            padding: 0;
+
+            ion-item {
+              --background: transparent;
+              --padding-start: 0;
+              --inner-padding-end: 0;
+              --border-color: rgba(0, 0, 0, 0.1);
+              --min-height: 40px;
+
+              ion-checkbox {
+                --size: 18px;
+                margin-right: 8px;
+                --checkbox-background-checked: var(--povoa-blue);
+                --border-color: rgba(0, 0, 0, 0.2);
+                --border-color-checked: var(--povoa-blue);
+              }
+            }
+          }
+        }
+
+        .clear-filters-button {
+          margin: 4px 0 0 0;
+          --background: #f5f7fa;
+          --color: var(--card-secondary);
+          --border-radius: 8px;
+          height: 36px;
+          font-size: 13px;
+          --background-activated: #e8e8e8;
+        }
+      }
+
+      .applied-filters-summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 12px;
+
+        ion-chip {
+          margin: 0;
+          height: 28px;
+          font-size: 12px;
+
+          &.results-chip {
+            --background: #f0f4fa;
+            --color: var(--povoa-blue);
+          }
+
+          &.filter-chip {
+            --background: var(--povoa-blue);
+            --color: white;
+            cursor: pointer;
+
+            ion-icon {
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    // New styles for the event category badge
+    .event-category-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      backdrop-filter: blur(2px);
+      z-index: 2;
+    }
+  }
+}
+
+// Estilos para o rodapé
+ion-footer {
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+
+  .menu-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 12px 10px;
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 50px;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      position: relative;
+
+      ion-icon {
+        font-size: 22px;
+        color: #333;
+        transition: all 0.25s ease;
+        margin-bottom: 4px;
+      }
+
+      .menu-label {
+        font-size: 10px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      &.active {
+        background-color: transparent;
+        box-shadow: none;
+        transform: translateY(0);
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          background-color: var(--povoa-blue);
+          width: 56px;
+          height: 56px;
+          border-radius: 16px;
+          z-index: -1;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: var(--povoa-blue);
+          border-radius: 50%;
+        }
+
+        ion-icon {
+          color: var(--povoa-gold);
+          font-size: 24px;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-label {
+          color: white;
+          font-weight: 600;
+        }
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+// Ajustes para o modo escuro
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: #1e1e1e;
+    --card-text: #e0e0e0;
+    --card-secondary: #a0a0a0;
+    --card-border: rgba(255, 255, 255, 0.05);
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  ion-content {
+    --background: #121212;
+
+    .section-title h2 {
+      color: #e0e0e0;
+    }
+
+    .eventos-section {
+      .intro-section {
+        background-color: #1e1e1e;
+
+        h2 {
+          color: var(--povoa-light-blue);
+        }
+
+        p {
+          color: #a0a0a0;
+        }
+      }
+
+      .eventos-skeleton .evento-skeleton {
+        background-color: #2a2a2a;
+
+        ion-skeleton-text {
+          --background-rgb: 60, 60, 60;
+          --background: rgba(var(--background-rgb), 0.3);
+        }
+      }
+
+      .eventos-skeleton .evento-skeleton.instagram-style {
+        background-color: #1e1e1e;
+
+        ion-skeleton-text {
+          --background-rgb: 60, 60, 60;
+          --background: rgba(var(--background-rgb), 0.3);
+        }
+      }
+
+      .eventos-list .evento-card {
+        background-color: #1e1e1e;
+
+        .evento-info {
+          h3 {
+            color: #e0e0e0;
+          }
+
+          p,
+          .evento-excerpt {
+            color: #a0a0a0;
+          }
+
+          .evento-link {
+            color: var(--povoa-light-blue);
+          }
+        }
+      }
+
+      .eventos-list.instagram-feed .evento-card.instagram-post {
+        background-color: #1e1e1e;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+        .post-header {
+          .post-avatar {
+            background-color: #333;
+          }
+
+          .post-author {
+            .author-name {
+              color: #e0e0e0;
+            }
+
+            .post-location {
+              color: #a0a0a0;
+            }
+          }
+        }
+
+        .post-content {
+          h3 {
+            color: #e0e0e0;
+          }
+
+          .post-caption {
+            color: #a0a0a0;
+            text-align: justify;
+
+            // Only apply the clamp when not expanded
+            &:not(.expanded) {
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+            }
+
+            // When expanded, add some transition and padding
+            &.expanded {
+              transition: all 0.3s ease;
+              padding-bottom: 8px;
+
+              // Style for paragraphs in expanded content
+              ::ng-deep p {
+                margin-bottom: 12px;
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
+
+            ::ng-deep p {
+              margin: 0;
+            }
+          }
+
+          .event-contacts {
+            font-size: 13px;
+            color: #a0a0a0;
+
+            strong {
+              color: var(--povoa-light-blue);
+            }
+          }
+
+          .post-view-more {
+            color: var(--povoa-light-blue);
+          }
+        }
+      }
+
+      .eventos-list.social-feed .evento-card.social-post {
+        background-color: #1e1e1e;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+        .post-header {
+          .post-avatar {
+            background-color: #333;
+          }
+
+          .post-author {
+            .author-name {
+              color: #e0e0e0;
+            }
+
+            .event-metadata {
+              .event-date,
+              .event-time,
+              .event-location {
+                color: #a0a0a0;
+
+                ion-icon {
+                  color: var(--povoa-light-blue);
+                }
+              }
+            }
+          }
+        }
+
+        .event-title {
+          color: var(--povoa-light-blue);
+        }
+
+        .post-content {
+          .post-caption {
+            color: #a0a0a0;
+            // Only apply the clamp when not expanded
+            &:not(.expanded) {
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+            }
+
+            // When expanded, add some transition and padding
+            &.expanded {
+              transition: all 0.3s ease;
+              padding-bottom: 8px;
+
+              // Style for paragraphs in expanded content
+              ::ng-deep p {
+                margin-bottom: 12px;
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
+
+            ::ng-deep p {
+              margin: 0;
+            }
+          }
+
+          .event-contacts {
+            color: #a0a0a0;
+            background-color: rgba(0, 68, 148, 0.1);
+
+            strong {
+              color: var(--povoa-light-blue);
+            }
+          }
+
+          .post-view-more {
+            color: var(--povoa-light-blue);
+          }
+        }
+      }
+
+      .eventos-list.modern-cards .evento-card.modern-card {
+        .card-actions {
+          .action-button {
+            &.toggle-button {
+              background-color: var(--povoa-blue);
+            }
+
+            &.external-button {
+              color: var(--povoa-light-blue);
+              border-color: var(--povoa-light-blue);
+
+              &:hover,
+              &:focus {
+                background-color: rgba(0, 102, 204, 0.1);
+              }
+            }
+          }
+        }
+      }
+
+      /* Dark mode styles for filters */
+      .search-filter-container {
+        background-color: var(--card-bg);
+
+        ion-searchbar {
+          --background: #2a2a2a;
+          --color: white;
+          --placeholder-color: #a0a0a0;
+        }
+
+        .filter-chips-container .filter-chips-scroll {
+          ion-chip {
+            --background: #2a2a2a;
+
+            &.selected {
+              --background: var(--povoa-blue);
+            }
+          }
+        }
+
+        .advanced-filters-panel {
+          &.show-filters {
+            border-top-color: rgba(255, 255, 255, 0.1);
+          }
+
+          .filter-section {
+            h5 {
+              color: var(--card-text);
+            }
+
+            .date-range-selector ion-item {
+              --border-color: rgba(255, 255, 255, 0.1);
+
+              ion-label {
+                color: #a0a0a0;
+              }
+            }
+
+            ion-list ion-item {
+              --border-color: rgba(255, 255, 255, 0.1);
+            }
+          }
+
+          .clear-filters-button {
+            --background: #2a2a2a;
+            --color: #a0a0a0;
+            --background-activated: #333333;
+          }
+        }
+
+        .applied-filters-summary {
+          border-top-color: rgba(255, 255, 255, 0.1);
+
+          ion-chip.results-chip {
+            --background: #2a2a2a;
+          }
+        }
+      }
+    }
+
+    .no-eventos {
+      background-color: rgba(0, 68, 148, 0.1);
+
+      ion-icon,
+      p {
+        color: var(--povoa-light-blue);
+      }
+
+      ion-button {
+        --color: var(--povoa-light-blue);
+      }
+    }
+  }
+
+  ion-header {
+    ion-toolbar {
+      --color: var(--povoa-light-blue);
+    }
+
+    .city-info .title-container {
+      h1,
+      .slogan {
+        color: var(--povoa-light-blue);
+      }
+    }
+
+    .breadcrumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      .breadcrumb-inner {
+        color: #a0a0a0;
+
+        span.current {
+          color: var(--povoa-light-blue);
+        }
+      }
+    }
+  }
+
+  ion-footer .menu-container {
+    background-color: #1e1e1e;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    .menu-item {
+      ion-icon {
+        color: #e0e0e0;
+      }
+
+      .menu-label {
+        color: #a0a0a0;
+      }
+
+      &.active {
+        &::before {
+          background-color: var(--povoa-blue);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        ion-icon {
+          color: white;
+        }
+      }
+    }
+  }
+}

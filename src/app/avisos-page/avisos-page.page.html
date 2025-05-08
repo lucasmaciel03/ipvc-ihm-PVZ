@@ -1,0 +1,53 @@
+<app-header title="Avisos" currentPage="Avisos"></app-header>
+
+<ion-content>
+  <div class="avisos-section">
+    <div class="section-title">
+      <h2>Avisos Municipais</h2>
+    </div>
+
+    <!-- Skeleton loader -->
+    <div *ngIf="isLoading" class="avisos-skeleton">
+      <div *ngFor="let i of [1,2,3,4]" class="aviso-skeleton">
+        <div class="aviso-header">
+          <div class="aviso-icon">
+            <ion-skeleton-text [animated]="true" style="width: 32px; height: 32px;"></ion-skeleton-text>
+          </div>
+          <div class="aviso-title">
+            <ion-skeleton-text [animated]="true" style="width: 70%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 40%;"></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="aviso-content">
+          <ion-skeleton-text [animated]="true" style="width: 100%;"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true" style="width: 90%;"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true" style="width: 95%;"></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de avisos -->
+    <div *ngIf="!isLoading" class="avisos-list">
+      <div *ngIf="avisos.length === 0" class="no-avisos">
+        <p>Não há avisos municipais no momento.</p>
+      </div>
+
+      <div *ngFor="let aviso of avisos" class="aviso-card" [ngClass]="getAvisoClass(aviso.tipo)">
+        <div class="aviso-header">
+          <div class="aviso-icon">
+            <ion-icon [name]="aviso.icone"></ion-icon>
+          </div>
+          <div class="aviso-title">
+            <h3>{{ aviso.titulo }}</h3>
+            <p>{{ aviso.data | date:'d MMMM, HH:mm' }}</p>
+          </div>
+        </div>
+        <div class="aviso-content">
+          <p>{{ aviso.descricao }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer activePage="avisos"></app-footer>

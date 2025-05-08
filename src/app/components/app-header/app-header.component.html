@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-no-padding">
+      <div class="topbar-container">
+        <div class="city-info">
+          <div class="title-container">
+            <!-- Light mode logo (dark text) -->
+            <img
+              src="assets/logo_w.png"
+              class="city-logo light-mode-logo"
+              alt="Logo da cidade"
+            />
+            <!-- Dark mode logo (light text) -->
+            <img
+              src="assets/logo_w.png"
+              class="city-logo dark-mode-logo"
+              alt="Logo da cidade"
+            />
+          </div>
+        </div>
+        <div class="header-actions">
+          <div
+            *ngIf="showWeather"
+            class="weather"
+            [class.loading]="isLoadingWeather"
+            [title]="weatherConditionText"
+          >
+            <img
+              *ngIf="weatherIconUrl"
+              [src]="weatherIconUrl"
+              class="weather-icon"
+              alt="Condição meteorológica"
+            />
+            <span>{{ temperature }}°</span>
+          </div>
+          <!-- Ícone de perfil do desenvolvedor -->
+          <div class="profile-icon" (click)="showDeveloperProfile()">
+            <ion-icon name="person-circle-outline" size="large"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <span>Início</span>
+      <ion-icon name="chevron-forward"></ion-icon>
+      <span class="current">{{ currentPage }}</span>
+    </div>
+  </div>
+</ion-header>
